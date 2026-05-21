@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Catálogo — Porto Piscinas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+*{ margin:0; padding:0; box-sizing:border-box; }
+:root{
+  --blue:#0BAAC8;
+  --blue-dark:#0890AA;
+  --blue-light:#E6F7FB;
+  --navy:#0D2B45;
+  --gray:#F5F8FA;
+  --gray-border:#DDE8EE;
+  --gray-text:#7A90A0;
+  --white:#fff;
+}
+body{ font-family:'Montserrat',sans-serif; background:var(--white); color:var(--navy); min-height:100vh; }
+
+/* ── BARRA ANUNCIO ── */
+.announce-bar{
+  background:var(--navy); color:rgba(255,255,255,0.75);
+  text-align:center; padding:9px 24px;
+  font-size:11px; font-weight:500; letter-spacing:0.3px;
+  display:flex; align-items:center; justify-content:center; gap:16px;
+  flex-wrap:wrap;
+}
+.announce-bar a{
+  color:var(--blue); font-weight:700; text-decoration:none;
+  white-space:nowrap;
+}
+.announce-bar a:hover{ text-decoration:underline; }
+
+/* ── HEADER ── */
+.header{
+  padding:18px 40px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid var(--gray-border);
+  position:sticky; top:0; background:white; z-index:100;
+}
+.header img{ height:40px; object-fit:contain; }
+.btn-wa{
+  display:inline-flex; align-items:center; gap:8px;
+  background:#25D366; color:white;
+  border-radius:100px; padding:10px 22px;
+  font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700;
+  text-decoration:none; transition:opacity .2s;
+}
+.btn-wa:hover{ opacity:0.88; }
+.btn-wa svg{ width:16px; height:16px; flex-shrink:0; }
+
+/* ── HERO ── */
+.hero{
+  text-align:center;
+  padding:64px 24px 0;
+  background:white;
+}
+.hero-eyebrow{
+  font-size:10px; font-weight:700; letter-spacing:4px;
+  text-transform:uppercase; color:var(--blue); margin-bottom:14px;
+}
+.hero h1{
+  font-size:38px; font-weight:900; color:var(--navy);
+  letter-spacing:-1px; margin-bottom:10px; line-height:1.1;
+}
+.hero-sub{
+  font-size:14px; font-weight:400; color:var(--gray-text);
+  max-width:480px; margin:0 auto 40px; line-height:1.7;
+}
+
+/* ── TABS ── */
+.tabs{
+  display:flex; gap:12px; justify-content:center;
+  padding:0 24px 48px;
+  background:white;
+}
+.tab-btn{
+  padding:14px 36px; border-radius:100px;
+  font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700;
+  cursor:pointer; transition:all .2s; border:2px solid var(--gray-border);
+  background:white; color:var(--gray-text);
+  display:flex; align-items:center; gap:10px;
+  letter-spacing:0.2px;
+}
+.tab-btn svg{ width:18px; height:18px; opacity:0.6; transition:opacity .2s; }
+.tab-btn:hover{ border-color:var(--blue); color:var(--blue); }
+.tab-btn.active{
+  background:var(--navy); color:white;
+  border-color:var(--navy); box-shadow:0 4px 20px rgba(13,43,69,0.2);
+}
+.tab-btn.active svg{ opacity:1; }
+
+/* ── SECCIÓN ── */
+.section{ display:none; padding:0 40px 80px; max-width:1180px; margin:0 auto; }
+.section.active{ display:block; }
+.section-header{ margin-bottom:40px; }
+.section-label{
+  font-size:10px; font-weight:800; letter-spacing:3px; text-transform:uppercase;
+  color:var(--blue); margin-bottom:10px;
+}
+.section-title{ font-size:26px; font-weight:900; color:var(--navy); margin-bottom:6px; }
+.section-desc{ font-size:13px; font-weight:400; color:var(--gray-text); line-height:1.7; }
+
+/* ── GRID ── */
+.models-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.models-grid.solo{
+  grid-template-columns:repeat(2,1fr);
+  max-width:800px; margin:0 auto;
+}
+
+/* ── CARD ── */
+.card{
+  border:1.5px solid var(--gray-border); border-radius:18px;
+  overflow:hidden; background:white;
+  transition:transform .2s, box-shadow .2s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 48px rgba(11,170,200,0.1);
+  border-color:var(--blue);
+}
+.card-img{ background:var(--gray); display:block; width:100%; }
+.card-body{ padding:22px 22px 24px; }
+.card-tag{
+  font-size:9px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--blue); margin-bottom:6px; display:flex; align-items:center; gap:6px;
+}
+.card-name{ font-size:20px; font-weight:900; color:var(--navy); margin-bottom:16px; letter-spacing:-0.3px; }
+.specs{ display:flex; flex-direction:column; gap:6px; margin-bottom:18px; }
+.spec{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:7px 11px; border-radius:7px; background:var(--gray);
+}
+.spec-k{ font-size:10px; font-weight:700; color:var(--gray-text); text-transform:uppercase; letter-spacing:0.3px; }
+.spec-v{ font-size:11px; font-weight:800; color:var(--navy); }
+.spec.highlight{ background:var(--blue-light); }
+.spec.highlight .spec-k{ color:var(--blue-dark); }
+.spec.highlight .spec-v{ color:var(--blue-dark); }
+.card-cta{
+  display:block; width:100%; text-align:center;
+  background:var(--navy); color:white; text-decoration:none;
+  border-radius:10px; padding:13px 0;
+  font-size:12px; font-weight:700; letter-spacing:0.5px;
+  transition:background .2s;
+}
+.card-cta:hover{ background:var(--blue); }
+
+/* ── BADGE MÁS VENDIDA ── */
+.badge-top{
+  display:inline-flex; align-items:center; gap:5px;
+  background:var(--navy); color:white;
+  font-size:9px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase;
+  padding:4px 12px; border-radius:100px; margin-bottom:8px;
+}
+
+/* ── DIVIDER ── */
+.divider{
+  border:none; border-top:1px solid var(--gray-border);
+  margin:0 40px 48px; max-width:1100px;
+}
+
+/* ── FOOTER ── */
+.cta-footer{
+  background:var(--navy); text-align:center; padding:64px 24px;
+}
+.cta-footer h2{
+  font-size:28px; font-weight:900; color:white; margin-bottom:8px; letter-spacing:-0.5px;
+}
+.cta-footer p{
+  font-size:13px; font-weight:300; color:rgba(255,255,255,0.5);
+  margin-bottom:28px; line-height:1.7;
+}
+.cta-footer .btn-wa{
+  font-size:13px; padding:14px 32px;
+}
+
+.footer{
+  text-align:center; padding:28px 24px;
+  border-top:1px solid var(--gray-border);
+}
+.footer img{ height:28px; object-fit:contain; opacity:0.4; }
+.footer p{
+  font-size:10px; font-weight:600; letter-spacing:2px;
+  text-transform:uppercase; color:var(--gray-border); margin-top:8px;
+}
+
+/* ── UBICACIÓN ── */
+.location-section{
+  background:var(--gray);
+  border-top:1px solid var(--gray-border);
+  padding:72px 40px;
+}
+.location-inner{
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:center;
+}
+.location-title{
+  font-size:26px; font-weight:900; color:var(--navy);
+  margin-bottom:28px; letter-spacing:-0.5px;
+}
+.location-detail{
+  display:flex; gap:14px; align-items:flex-start; margin-bottom:22px;
+}
+.location-detail svg{
+  width:20px; height:20px; flex-shrink:0;
+  stroke:var(--blue); margin-top:2px;
+}
+.loc-label{
+  font-size:10px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; color:var(--gray-text); margin-bottom:4px;
+}
+.loc-value{
+  font-size:13px; font-weight:600; color:var(--navy); line-height:1.6;
+}
+.btn-maps{
+  display:inline-flex; align-items:center; gap:8px; margin-top:8px;
+  background:var(--navy); color:white; text-decoration:none;
+  border-radius:100px; padding:11px 24px;
+  font-size:12px; font-weight:700; letter-spacing:0.3px;
+  transition:background .2s;
+}
+.btn-maps svg{ width:14px; height:14px; stroke:white; }
+.btn-maps:hover{ background:var(--blue); }
+.location-map{
+  height:320px; border-radius:16px; overflow:hidden;
+  border:1.5px solid var(--gray-border);
+  box-shadow:0 8px 32px rgba(13,43,69,0.08);
+}
+.location-map iframe{ display:block; }
+
+@media(max-width:900px){
+  .location-inner{ grid-template-columns:1fr; }
+  .location-map{ height:260px; }
+  .location-section{ padding:48px 24px; }
+}
+
+@media(max-width:900px){
+  .models-grid{ grid-template-columns:repeat(2,1fr); }
+  .models-grid.solo{ grid-template-columns:1fr; }
+  .hero h1{ font-size:28px; }
+  .section{ padding:0 24px 64px; }
+}
+@media(max-width:600px){
+  .models-grid{ grid-template-columns:1fr; }
+  .header{ padding:14px 20px; }
+  .tabs{ flex-direction:column; align-items:center; }
+  .tab-btn{ width:100%; max-width:320px; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- BARRA ANUNCIO -->
+<div class="announce-bar">
+  <span>🏊 10 años fabricando piscinas de fibra de vidrio · Entrega a todo el país</span>
+  <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20sobre%20las%20piscinas." target="_blank">Consultá ahora →</a>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <img src="Logo/WhatsApp Image 2026-04-08 at 9.50.46 PM (1).jpeg" alt="Porto Piscinas"/>
+  <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20sobre%20las%20piscinas." class="btn-wa" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Hablar con un asesor
+  </a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Porto Piscinas — Fibra de Vidrio</p>
+  <h1>Catálogo de Modelos</h1>
+  <p class="hero-sub">Fabricación propia con 10 años de experiencia. Encontrá el modelo que se adapta a tu espacio.</p>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('clasica', this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="13" rx="3"/><path d="M2 13h20"/><path d="M7 7V5a2 2 0 0 1 4 0v2"/></svg>
+    Piscina Clásica
+  </button>
+  <button class="tab-btn" onclick="showTab('solarium', this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    Piscinas & Solarium
+  </button>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!--  SECCIÓN CLÁSICA                  -->
+<!-- ══════════════════════════════════ -->
+<div id="tab-clasica" class="section active">
+  <div class="section-header">
+    <p class="section-label">Colección</p>
+    <h2 class="section-title">Piscina Clásica</h2>
+    <p class="section-desc">Diseño rectangular con escalera integrada. 5 tamaños disponibles para adaptarse a cada espacio.</p>
+  </div>
+  <div class="models-grid">
+
+    <!-- PORTO 430 -->
+    <div class="card">
+      <svg class="card-img" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="w430" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A8DEF0"/><stop offset="100%" stop-color="#3AABCC"/></linearGradient>
+          <linearGradient id="s430" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D0EFFA"/><stop offset="100%" stop-color="#A8DEF0"/></linearGradient>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0L0 0 0 20" fill="none" stroke="#D5EBF5" stroke-width="0.5"/></pattern>
+          <filter id="sh430"><feDropShadow dx="2" dy="3" stdDeviation="5" flood-color="#1A8FAD" flood-opacity="0.18"/></filter>
+        </defs>
+        <rect width="400" height="240" fill="#EFF8FC"/>
+        <rect width="400" height="240" fill="url(#grid)"/>
+        <!-- Pool 4.30x3.00 @ 54px/m → 232x162 centered -->
+        <g filter="url(#sh430)">
+          <rect x="84" y="39" width="232" height="162" rx="11" fill="url(#w430)"/>
+        </g>
+        <!-- Stairs zone (left 54px = 1m) -->
+        <rect x="84" y="39" width="54" height="162" rx="9" fill="url(#s430)"/>
+        <line x1="84" y1="39" x2="138" y2="39" stroke="#1A9EC0" stroke-width="1.5" opacity="0"/>
+        <!-- Step lines (vertical separators) -->
+        <line x1="95"  y1="39" x2="95"  y2="201" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="106" y1="39" x2="106" y2="201" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="117" y1="39" x2="117" y2="201" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="128" y1="39" x2="128" y2="201" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <!-- Stair border -->
+        <line x1="138" y1="39" x2="138" y2="201" stroke="#1A9EC0" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.45"/>
+        <!-- Pool outline -->
+        <rect x="84" y="39" width="232" height="162" rx="11" stroke="#1A9EC0" stroke-width="2.5" fill="none"/>
+        <!-- Dimension labels -->
+        <text x="200" y="226" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" letter-spacing="1">4,30 m</text>
+        <text x="330" y="125" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" transform="rotate(90,330,125)">3,00 m</text>
+      </svg>
+      <div class="card-body">
+        <p class="card-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--blue)"><rect x="2" y="7" width="20" height="13" rx="3"/></svg>
+          Piscina Clásica
+        </p>
+        <h3 class="card-name">Porto 430</h3>
+        <div class="specs">
+          <div class="spec"><span class="spec-k">Medidas</span><span class="spec-v">4,30 × 3,00 m</span></div>
+          <div class="spec"><span class="spec-k">Profundidad</span><span class="spec-v">1,40 m</span></div>
+          <div class="spec"><span class="spec-k">Volumen</span><span class="spec-v">12.000 lts</span></div>
+          <div class="spec"><span class="spec-k">Sup. espejo</span><span class="spec-v">10,8 m²</span></div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20430." class="card-cta" target="_blank">Consultar con un asesor →</a>
+      </div>
+    </div>
+
+    <!-- PORTO 500 -->
+    <div class="card">
+      <svg class="card-img" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="w500" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A8DEF0"/><stop offset="100%" stop-color="#3AABCC"/></linearGradient>
+          <linearGradient id="s500" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D0EFFA"/><stop offset="100%" stop-color="#A8DEF0"/></linearGradient>
+          <filter id="sh500"><feDropShadow dx="2" dy="3" stdDeviation="5" flood-color="#1A8FAD" flood-opacity="0.18"/></filter>
+        </defs>
+        <rect width="400" height="240" fill="#EFF8FC"/>
+        <rect width="400" height="240" fill="url(#grid)"/>
+        <!-- Pool 5.00x3.00 @ 54px/m → 270x162 centered -->
+        <g filter="url(#sh500)">
+          <rect x="65" y="39" width="270" height="162" rx="11" fill="url(#w500)"/>
+        </g>
+        <rect x="65" y="39" width="54" height="162" rx="9" fill="url(#s500)"/>
+        <line x1="76"  y1="39" x2="76"  y2="201" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="87"  y1="39" x2="87"  y2="201" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="98"  y1="39" x2="98"  y2="201" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="109" y1="39" x2="109" y2="201" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="119" y1="39" x2="119" y2="201" stroke="#1A9EC0" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.45"/>
+        <rect x="65" y="39" width="270" height="162" rx="11" stroke="#1A9EC0" stroke-width="2.5" fill="none"/>
+        <text x="200" y="226" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" letter-spacing="1">5,00 m</text>
+        <text x="348" y="125" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" transform="rotate(90,348,125)">3,00 m</text>
+      </svg>
+      <div class="card-body">
+        <p class="card-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--blue)"><rect x="2" y="7" width="20" height="13" rx="3"/></svg>
+          Piscina Clásica
+        </p>
+        <h3 class="card-name">Porto 500</h3>
+        <div class="specs">
+          <div class="spec"><span class="spec-k">Medidas</span><span class="spec-v">5,00 × 3,00 m</span></div>
+          <div class="spec"><span class="spec-k">Profundidad</span><span class="spec-v">1,40 m</span></div>
+          <div class="spec"><span class="spec-k">Volumen</span><span class="spec-v">14.000 lts</span></div>
+          <div class="spec"><span class="spec-k">Sup. espejo</span><span class="spec-v">11,61 m²</span></div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20500." class="card-cta" target="_blank">Consultar con un asesor →</a>
+      </div>
+    </div>
+
+    <!-- PORTO 630 -->
+    <div class="card">
+      <svg class="card-img" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="w630" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A8DEF0"/><stop offset="100%" stop-color="#3AABCC"/></linearGradient>
+          <linearGradient id="s630" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D0EFFA"/><stop offset="100%" stop-color="#A8DEF0"/></linearGradient>
+          <filter id="sh630"><feDropShadow dx="2" dy="3" stdDeviation="5" flood-color="#1A8FAD" flood-opacity="0.18"/></filter>
+        </defs>
+        <rect width="400" height="240" fill="#EFF8FC"/>
+        <rect width="400" height="240" fill="url(#grid)"/>
+        <!-- Pool 6.30x3.00 @ 48px/m → 302x144 centered -->
+        <g filter="url(#sh630)">
+          <rect x="49" y="48" width="302" height="144" rx="10" fill="url(#w630)"/>
+        </g>
+        <rect x="49" y="48" width="48" height="144" rx="8" fill="url(#s630)"/>
+        <line x1="59"  y1="48" x2="59"  y2="192" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="69"  y1="48" x2="69"  y2="192" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="79"  y1="48" x2="79"  y2="192" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="89"  y1="48" x2="89"  y2="192" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="97"  y1="48" x2="97"  y2="192" stroke="#1A9EC0" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.45"/>
+        <rect x="49" y="48" width="302" height="144" rx="10" stroke="#1A9EC0" stroke-width="2.5" fill="none"/>
+        <text x="200" y="226" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" letter-spacing="1">6,30 m</text>
+        <text x="362" y="122" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" transform="rotate(90,362,122)">3,00 m</text>
+      </svg>
+      <div class="card-body">
+        <p class="card-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--blue)"><rect x="2" y="7" width="20" height="13" rx="3"/></svg>
+          Piscina Clásica
+        </p>
+        <h3 class="card-name">Porto 630</h3>
+        <div class="specs">
+          <div class="spec"><span class="spec-k">Medidas</span><span class="spec-v">6,30 × 3,00 m</span></div>
+          <div class="spec"><span class="spec-k">Profundidad</span><span class="spec-v">1,40 m</span></div>
+          <div class="spec"><span class="spec-k">Volumen</span><span class="spec-v">18.000 lts</span></div>
+          <div class="spec"><span class="spec-k">Sup. espejo</span><span class="spec-v">14,85 m²</span></div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20630." class="card-cta" target="_blank">Consultar con un asesor →</a>
+      </div>
+    </div>
+
+    <!-- PORTO 700 -->
+    <div class="card">
+      <svg class="card-img" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="w700" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A8DEF0"/><stop offset="100%" stop-color="#3AABCC"/></linearGradient>
+          <linearGradient id="s700" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D0EFFA"/><stop offset="100%" stop-color="#A8DEF0"/></linearGradient>
+          <filter id="sh700"><feDropShadow dx="2" dy="3" stdDeviation="5" flood-color="#1A8FAD" flood-opacity="0.18"/></filter>
+        </defs>
+        <rect width="400" height="240" fill="#EFF8FC"/>
+        <rect width="400" height="240" fill="url(#grid)"/>
+        <!-- Pool 7.00x3.00 @ 44px/m → 308x132 centered -->
+        <g filter="url(#sh700)">
+          <rect x="46" y="54" width="308" height="132" rx="9" fill="url(#w700)"/>
+        </g>
+        <rect x="46" y="54" width="44" height="132" rx="7" fill="url(#s700)"/>
+        <line x1="55"  y1="54" x2="55"  y2="186" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="64"  y1="54" x2="64"  y2="186" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="73"  y1="54" x2="73"  y2="186" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="82"  y1="54" x2="82"  y2="186" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="90"  y1="54" x2="90"  y2="186" stroke="#1A9EC0" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.45"/>
+        <rect x="46" y="54" width="308" height="132" rx="9" stroke="#1A9EC0" stroke-width="2.5" fill="none"/>
+        <!-- Más vendida badge -->
+        <rect x="46" y="54" width="90" height="22" rx="0" fill="var(--navy, #0D2B45)" opacity="0"/>
+        <text x="200" y="226" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" letter-spacing="1">7,00 m</text>
+        <text x="365" y="122" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" transform="rotate(90,365,122)">3,00 m</text>
+      </svg>
+      <div class="card-body">
+        <div class="badge-top">⭐ Más vendida</div>
+        <p class="card-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--blue)"><rect x="2" y="7" width="20" height="13" rx="3"/></svg>
+          Piscina Clásica
+        </p>
+        <h3 class="card-name">Porto 700</h3>
+        <div class="specs">
+          <div class="spec"><span class="spec-k">Medidas</span><span class="spec-v">7,00 × 3,00 m</span></div>
+          <div class="spec"><span class="spec-k">Profundidad</span><span class="spec-v">1,40 m</span></div>
+          <div class="spec"><span class="spec-k">Volumen</span><span class="spec-v">20.000 lts</span></div>
+          <div class="spec"><span class="spec-k">Sup. espejo</span><span class="spec-v">17,01 m²</span></div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20700." class="card-cta" target="_blank">Consultar con un asesor →</a>
+      </div>
+    </div>
+
+    <!-- PORTO 750 -->
+    <div class="card">
+      <svg class="card-img" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="w750" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A8DEF0"/><stop offset="100%" stop-color="#3AABCC"/></linearGradient>
+          <linearGradient id="s750" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D0EFFA"/><stop offset="100%" stop-color="#A8DEF0"/></linearGradient>
+          <filter id="sh750"><feDropShadow dx="2" dy="3" stdDeviation="5" flood-color="#1A8FAD" flood-opacity="0.18"/></filter>
+        </defs>
+        <rect width="400" height="240" fill="#EFF8FC"/>
+        <rect width="400" height="240" fill="url(#grid)"/>
+        <!-- Pool 7.50x3.15 @ 42px/m → 315x132 centered -->
+        <g filter="url(#sh750)">
+          <rect x="42" y="54" width="315" height="132" rx="9" fill="url(#w750)"/>
+        </g>
+        <rect x="42" y="54" width="42" height="132" rx="7" fill="url(#s750)"/>
+        <line x1="51"  y1="54" x2="51"  y2="186" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="60"  y1="54" x2="60"  y2="186" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="69"  y1="54" x2="69"  y2="186" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="78"  y1="54" x2="78"  y2="186" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="84"  y1="54" x2="84"  y2="186" stroke="#1A9EC0" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.45"/>
+        <rect x="42" y="54" width="315" height="132" rx="9" stroke="#1A9EC0" stroke-width="2.5" fill="none"/>
+        <text x="200" y="226" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" letter-spacing="1">7,50 m</text>
+        <text x="368" y="122" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" transform="rotate(90,368,122)">3,15 m</text>
+      </svg>
+      <div class="card-body">
+        <p class="card-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--blue)"><rect x="2" y="7" width="20" height="13" rx="3"/></svg>
+          Piscina Clásica
+        </p>
+        <h3 class="card-name">Porto 750</h3>
+        <div class="specs">
+          <div class="spec"><span class="spec-k">Medidas</span><span class="spec-v">7,50 × 3,15 m</span></div>
+          <div class="spec"><span class="spec-k">Profundidad</span><span class="spec-v">1,40 m</span></div>
+          <div class="spec"><span class="spec-k">Volumen</span><span class="spec-v">22.000 lts</span></div>
+          <div class="spec"><span class="spec-k">Sup. espejo</span><span class="spec-v">20,52 m²</span></div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20750." class="card-cta" target="_blank">Consultar con un asesor →</a>
+      </div>
+    </div>
+
+  </div><!-- /models-grid -->
+</div><!-- /tab-clasica -->
+
+<!-- ══════════════════════════════════ -->
+<!--  SECCIÓN PISCINAS & SOLARIUM      -->
+<!-- ══════════════════════════════════ -->
+<div id="tab-solarium" class="section">
+  <div class="section-header">
+    <p class="section-label">Colección Premium</p>
+    <h2 class="section-title">Piscinas & Solarium</h2>
+    <p class="section-desc">Todo lo de una piscina clásica más una plataforma integrada para tomar sol y relajarse en el agua.</p>
+  </div>
+  <div class="models-grid solo">
+
+    <!-- PORTO 501 -->
+    <div class="card">
+      <svg class="card-img" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="w501" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A8DEF0"/><stop offset="100%" stop-color="#3AABCC"/></linearGradient>
+          <linearGradient id="s501" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D0EFFA"/><stop offset="100%" stop-color="#A8DEF0"/></linearGradient>
+          <linearGradient id="sol501" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8F6FA"/><stop offset="100%" stop-color="#CDE8F5"/></linearGradient>
+          <filter id="sh501"><feDropShadow dx="2" dy="3" stdDeviation="5" flood-color="#1A8FAD" flood-opacity="0.18"/></filter>
+        </defs>
+        <rect width="400" height="240" fill="#EFF8FC"/>
+        <rect width="400" height="240" fill="url(#grid)"/>
+        <!-- Solarium platform (right, ~1m = 50px) at x=300 -->
+        <!-- Pool 5.00x3.00 @ 50px/m → 250x150. Solarium: 50x150 -->
+        <!-- Total: 300px wide. Center: x=(400-300)/2=50 -->
+        <!-- Pool: x=50, y=45, w=250, h=150 -->
+        <!-- Solarium: x=300, y=45, w=50, h=150 -->
+        <g filter="url(#sh501)">
+          <!-- Pool body -->
+          <rect x="50" y="45" width="250" height="150" rx="11" fill="url(#w501)"/>
+          <!-- Solarium -->
+          <rect x="296" y="45" width="54" height="150" rx="11" fill="url(#sol501)" stroke="#1A9EC0" stroke-width="2" stroke-dasharray="6,4"/>
+        </g>
+        <!-- Stairs (left end of pool) -->
+        <rect x="50" y="45" width="50" height="150" rx="9" fill="url(#s501)"/>
+        <line x1="60"  y1="45" x2="60"  y2="195" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="70"  y1="45" x2="70"  y2="195" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="80"  y1="45" x2="80"  y2="195" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="90"  y1="45" x2="90"  y2="195" stroke="#2090B0" stroke-width="1" opacity="0.35"/>
+        <line x1="100" y1="45" x2="100" y2="195" stroke="#1A9EC0" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.45"/>
+        <!-- Pool outline -->
+        <rect x="50" y="45" width="250" height="150" rx="11" stroke="#1A9EC0" stroke-width="2.5" fill="none"/>
+        <!-- Solarium label -->
+        <text x="323" y="117" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="9" font-weight="800" fill="#2090B0" letter-spacing="1" transform="rotate(90,323,120)">SOLARIUM</text>
+        <!-- Dimension labels -->
+        <text x="175" y="228" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" letter-spacing="1">5,00 m</text>
+        <text x="375" y="122" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#7A90A0" transform="rotate(90,375,122)">3,00 m</text>
+      </svg>
+      <div class="card-body">
+        <div class="badge-top">☀️ Incluye Solarium</div>
+        <p class="card-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--blue)"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2" stroke="var(--blue)" stroke-width="2"/></svg>
+          Piscinas & Solarium
+        </p>
+        <h3 class="card-name">Porto 501</h3>
+        <div class="specs">
+          <div class="spec"><span class="spec-k">Medidas</span><span class="spec-v">5,00 × 3,00 m</span></div>
+          <div class="spec"><span class="spec-k">Profundidad</span><span class="spec-v">1,40 m</span></div>
+          <div class="spec"><span class="spec-k">Volumen</span><span class="spec-v">13.000 lts</span></div>
+          <div class="spec"><span class="spec-k">Sup. espejo</span><span class="spec-v">11,61 m²</span></div>
+          <div class="spec highlight"><span class="spec-k">Plataforma solarium</span><span class="spec-v">✓ Integrada</span></div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20501%20con%20Solarium." class="card-cta" target="_blank">Consultar con un asesor →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA FOOTER -->
+<section class="cta-footer">
+  <h2>¿Tenés alguna duda?</h2>
+  <p>Hablá directamente con uno de nuestros asesores.<br>Te ayudamos a elegir el modelo ideal para tu espacio.</p>
+  <a href="https://wa.me/5493518786914?text=Hola!%20Vi%20el%20cat%C3%A1logo%20y%20quiero%20consultar%20sobre%20los%20modelos." class="btn-wa" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Hablar con un asesor
+  </a>
+</section>
+
+<!-- UBICACIÓN -->
+<section class="location-section">
+  <div class="location-inner">
+    <div class="location-info">
+      <p class="section-label">Dónde encontrarnos</p>
+      <h2 class="location-title">Nuestra fábrica</h2>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <p class="loc-label">Dirección</p>
+          <p class="loc-value">Parque Industrial Polo 52<br>Manzana 49 · Lote 23<br>Córdoba, Argentina</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div>
+          <p class="loc-label">Horario de atención</p>
+          <p class="loc-value">Lunes a Viernes<br>8:00 a 13:00 / 14:00 a 17:00</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+        <div>
+          <p class="loc-label">Teléfono</p>
+          <p class="loc-value">3512277631</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <p class="loc-label">Email</p>
+          <p class="loc-value">info@piscinasporto.com.ar</p>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps?q=-31.430524826049805,-64.10391235351562&z=17&hl=es" target="_blank" class="btn-maps">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Ver en Google Maps
+      </a>
+    </div>
+    <div class="location-map">
+      <iframe
+        src="https://maps.google.com/maps?q=-31.430524826049805,-64.10391235351562&z=17&output=embed&hl=es"
+        width="100%" height="100%"
+        style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <img src="Logo/WhatsApp Image 2026-04-08 at 9.50.46 PM (1).jpeg" alt="Porto Piscinas"/>
+  <p>Porto Piscinas · Polo 52, Parque Industrial · Fibra de Vidrio</p>
+</footer>
+
+<script>
+function showTab(tab, btn) {
+  // Esconder todas las secciones
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  // Desactivar todos los botones
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  // Mostrar sección elegida
+  document.getElementById('tab-' + tab).classList.add('active');
+  // Activar botón clickeado
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; }
+body { background: #ffffff; overflow: hidden; }
+canvas { display: block; }
+</style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+// === SCENE SETUP ===
+const W = 900, H = 600;
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.setSize(W, H);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.setClearColor(0xffffff);
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+// === CAMERA (orthographic top-down, slightly angled for 3D feel) ===
+const aspect = W / H;
+const camSize = 5.5;
+const camera = new THREE.OrthographicCamera(
+  -camSize * aspect, camSize * aspect,
+  camSize, -camSize,
+  0.1, 100
+);
+camera.position.set(-2, 18, 6);
+camera.lookAt(0.5, 0, 0);
+
+// === LIGHTS ===
+const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+scene.add(ambient);
+
+const sun = new THREE.DirectionalLight(0xfff8e8, 2.2);
+sun.position.set(-6, 20, 8);
+sun.castShadow = true;
+sun.shadow.mapSize.width = 4096;
+sun.shadow.mapSize.height = 4096;
+sun.shadow.camera.near = 1;
+sun.shadow.camera.far = 60;
+sun.shadow.camera.left = -12;
+sun.shadow.camera.right = 12;
+sun.shadow.camera.top = 10;
+sun.shadow.camera.bottom = -10;
+sun.shadow.bias = -0.001;
+scene.add(sun);
+
+const fill = new THREE.DirectionalLight(0xd0e8f8, 0.6);
+fill.position.set(8, 10, -4);
+scene.add(fill);
+
+// === HELPERS ===
+function roundedBox(w, h, d, r, segs) {
+  // Simple rounded box via shape
+  const shape = new THREE.Shape();
+  shape.moveTo(-w/2 + r, -d/2);
+  shape.lineTo( w/2 - r, -d/2);
+  shape.quadraticCurveTo( w/2, -d/2,  w/2, -d/2 + r);
+  shape.lineTo( w/2,  d/2 - r);
+  shape.quadraticCurveTo( w/2,  d/2,  w/2 - r,  d/2);
+  shape.lineTo(-w/2 + r,  d/2);
+  shape.quadraticCurveTo(-w/2,  d/2, -w/2,  d/2 - r);
+  shape.lineTo(-w/2, -d/2 + r);
+  shape.quadraticCurveTo(-w/2, -d/2, -w/2 + r, -d/2);
+  const extrudeSettings = { depth: h, bevelEnabled: false, steps: 1 };
+  const geo = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+  geo.rotateX(-Math.PI / 2);
+  geo.translate(0, 0, 0);
+  return geo;
+}
+
+// === POOL DIMENSIONS — Porto 700: 7.00 × 3.00m ===
+const PW = 7.0;   // pool length
+const PD = 3.0;   // pool width
+const RIM = 0.15; // rim thickness
+const DEPTH = 0.9; // visual depth of pool walls
+const STEP_W = 0.28; // each step width
+const N_STEPS = 4;
+const POOL_DEPTH_VIZ = 0.55; // water sits this low
+
+// === RIM (pool surround) ===
+const rimGeo = roundedBox(PW + RIM*2, 0.12, PD + RIM*2, 0.22);
+const rimMat = new THREE.MeshStandardMaterial({
+  color: 0x8fb8d0,
+  roughness: 0.25,
+  metalness: 0.05,
+  envMapIntensity: 1,
+});
+const rim = new THREE.Mesh(rimGeo, rimMat);
+rim.position.y = 0.06;
+rim.castShadow = true;
+rim.receiveShadow = true;
+scene.add(rim);
+
+// === POOL WALLS (outer shell, dark blue) ===
+const wallGeo = roundedBox(PW, DEPTH, PD, 0.15);
+const wallMat = new THREE.MeshStandardMaterial({
+  color: 0x3a7090,
+  roughness: 0.4,
+  metalness: 0.1,
+});
+const walls = new THREE.Mesh(wallGeo, wallMat);
+walls.position.y = -DEPTH/2;
+walls.receiveShadow = true;
+scene.add(walls);
+
+// === POOL FLOOR ===
+const floorGeo = new THREE.PlaneGeometry(PW - RIM*2, PD - RIM*2);
+const floorMat = new THREE.MeshStandardMaterial({
+  color: 0x5a9ab8,
+  roughness: 0.8,
+  metalness: 0.0,
+});
+const floor = new THREE.Mesh(floorGeo, floorMat);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -DEPTH + 0.02;
+floor.receiveShadow = true;
+scene.add(floor);
+
+// === WATER SURFACE ===
+const waterGeo = new THREE.PlaneGeometry(PW - RIM*2 - 0.04, PD - RIM*2 - 0.04, 40, 20);
+// Subtle wave displacement
+const pos = waterGeo.attributes.position;
+for (let i = 0; i < pos.count; i++) {
+  const x = pos.getX(i);
+  const z = pos.getZ(i);
+  pos.setY(i, Math.sin(x * 1.8) * 0.012 + Math.cos(z * 2.5) * 0.008);
+}
+waterGeo.computeVertexNormals();
+
+const waterMat = new THREE.MeshPhysicalMaterial({
+  color: 0x4ba8cc,
+  roughness: 0.04,
+  metalness: 0.0,
+  transmission: 0.55,
+  thickness: 0.5,
+  transparent: true,
+  opacity: 0.88,
+  ior: 1.33,
+  reflectivity: 0.6,
+  envMapIntensity: 1.5,
+});
+const water = new THREE.Mesh(waterGeo, waterMat);
+water.rotation.x = -Math.PI / 2;
+water.position.y = -POOL_DEPTH_VIZ;
+scene.add(water);
+
+// === STEPS (right side, 4 steps descending) ===
+const stepColors = [0xadd8ec, 0x99ccdf, 0x88c0d4, 0x77b4c8];
+for (let i = 0; i < N_STEPS; i++) {
+  const sW = STEP_W;
+  const sD = PD - RIM * 2 - 0.04;
+  const sH = (DEPTH / N_STEPS) * (i + 1) * 0.6 + 0.04;
+  const stepGeo = new THREE.BoxGeometry(sW, sH, sD);
+  const stepMat = new THREE.MeshStandardMaterial({
+    color: stepColors[i],
+    roughness: 0.3,
+    metalness: 0.05,
+  });
+  const step = new THREE.Mesh(stepGeo, stepMat);
+  // Steps go from right edge inward
+  const xPos = (PW/2 - RIM - sW/2) - i * sW;
+  step.position.set(xPos, -sH/2, 0);
+  step.castShadow = true;
+  step.receiveShadow = true;
+  scene.add(step);
+}
+
+// === SHADOW CATCHER (ground plane outside pool) ===
+const groundGeo = new THREE.PlaneGeometry(30, 30);
+const groundMat = new THREE.MeshStandardMaterial({
+  color: 0xffffff,
+  roughness: 1,
+  metalness: 0,
+});
+const ground = new THREE.Mesh(groundGeo, groundMat);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -0.01;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// === RENDER ===
+renderer.render(scene, camera);
+document.title = 'READY';
+</script>
+</body>
+</html>
