@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/png" href="Logo/icono.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Porto Piscinas — Piletas de Fibra de Vidrio · Córdoba</title>
+<meta name="description" content="Fabricantes de piletas de fibra de vidrio en Córdoba. 10 años de experiencia, entrega en todo el país, al mejor precio del mercado. Consultá nuestros modelos."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#1A3566;--navy2:#122549;--navy3:#0D1F40;
+  --soft:#6278A0;--beige:#F5F0E3;--beige2:#EDE5CF;--beige3:#DDD3B8;
+  --white:#FFFFFF;--water:#3AABCC;--water2:#A8DEF0;--gray:#F4F6F8;--text:#222;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+
+/* ── HEADER ── */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.98);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:84px;
+  border-bottom:1px solid rgba(0,0,0,0.07);
+  box-shadow:0 2px 20px rgba(0,0,0,0.06);
+}
+.header-logo img{height:72px;object-fit:contain;}
+.header-nav{display:flex;gap:28px;align-items:center;}
+.header-nav a{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--navy);opacity:.7;transition:opacity .2s;}
+.header-nav a:hover{opacity:1;}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:white;border-radius:100px;padding:10px 22px;font-size:12px;font-weight:800;letter-spacing:0.5px;transition:opacity .2s;}
+.btn-wa:hover{opacity:.85;}
+.btn-wa svg{width:16px;height:16px;flex-shrink:0;}
+.header-menu{display:none;cursor:pointer;color:var(--navy);}
+
+/* ── HERO ── */
+@keyframes bannerZoom{
+  0%  {transform:scale(1);}
+  50% {transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+.hero{
+  height:100vh;
+  min-height:600px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:20px 24px 0;
+  position:relative;overflow:hidden;
+  background-color:#0D2145;
+}
+.hero-bg{
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  z-index:0;
+  background:url('banner/banner.png') center center/cover no-repeat;
+  animation:bannerZoom 14s ease-in-out infinite;
+  transform-origin:center center;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(160deg,rgba(10,25,55,0.70) 0%,rgba(10,35,70,0.62) 100%);
+  z-index:1;pointer-events:none;
+}
+/* Burbujas flotantes estilo Acquam */
+@keyframes riseBubble{
+  0%  {transform:translateY(0) translateX(0);opacity:0;}
+  8%  {opacity:.7;}
+  80% {opacity:.3;}
+  100%{transform:translateY(-110vh) translateX(var(--drift,0px));opacity:0;}
+}
+.hero-animated-bubble{
+  position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;
+}
+.bubble{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle at 32% 32%,
+    rgba(255,255,255,0.28) 0%,
+    rgba(58,171,204,0.14) 45%,
+    rgba(26,53,102,0.06) 75%,
+    transparent 100%);
+  border:1.5px solid rgba(255,255,255,0.18);
+  animation:riseBubble var(--d,9s) ease-in infinite var(--dl,0s);
+}
+.hero>*:not(.hero-bg):not(.hero-animated-bubble){position:relative;z-index:2;}
+.hero-logo-big{
+  width:clamp(150px,26vw,260px);margin-bottom:32px;
+  border-radius:16px;background:rgba(255,255,255,0.93);
+  padding:14px 24px;box-shadow:0 8px 40px rgba(0,0,0,0.28);
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid rgba(255,255,255,0.3);border-radius:100px;
+  padding:6px 18px;margin-bottom:24px;
+  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);
+}
+.hero h1{
+  font-size:clamp(32px,6vw,72px);font-weight:900;
+  color:white;line-height:1.05;letter-spacing:-1px;
+  max-width:820px;margin-bottom:20px;
+  text-shadow:0 2px 20px rgba(0,0,0,0.4);
+}
+.hero h1 em{font-style:normal;color:#7DDDF5;font-weight:300;}
+.hero-sub{
+  font-size:clamp(14px,2vw,18px);font-weight:400;
+  color:rgba(255,255,255,0.85);max-width:540px;
+  line-height:1.8;margin-bottom:44px;
+  text-shadow:0 1px 8px rgba(0,0,0,0.3);
+}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:9px;
+  background:#25D366;color:white;border-radius:100px;
+  padding:16px 34px;font-size:14px;font-weight:800;
+  transition:all .2s;box-shadow:0 4px 20px rgba(37,211,102,0.4);
+}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px);}
+.btn-primary svg{width:18px;height:18px;}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:9px;
+  border:2px solid rgba(255,255,255,0.4);color:white;
+  border-radius:100px;padding:15px 28px;
+  font-size:13px;font-weight:700;transition:all .2s;
+  backdrop-filter:blur(4px);background:rgba(255,255,255,0.08);
+}
+.btn-outline:hover{border-color:white;background:rgba(255,255,255,0.16);}
+
+/* ── INTRO STRIP ── */
+.intro-strip{background:var(--water);padding:0;}
+.intro-strip-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;
+  align-items:center;
+}
+.intro-item{
+  padding:32px 40px;text-align:center;
+}
+.intro-divider{background:rgba(255,255,255,0.25);height:60px;align-self:center;}
+.intro-item-icon{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 10px;
+}
+.intro-item-icon svg{width:20px;height:20px;stroke:white;}
+.intro-item h3{font-size:16px;font-weight:900;color:white;letter-spacing:-0.2px;}
+.intro-item p{font-size:12px;font-weight:600;color:rgba(255,255,255,0.75);margin-top:3px;}
+
+/* ── STATS ── */
+.stats{position:relative;overflow:hidden;padding:90px 40px;}
+.stats-bg{position:absolute;inset:0;z-index:0;background:url('banner/banner.png') center center/cover no-repeat;}
+.stats::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(135deg,rgba(13,31,64,0.90) 0%,rgba(26,53,102,0.84) 100%);
+  pointer-events:none;
+}
+.stats-inner{
+  position:relative;z-index:2;
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+}
+.stat-item{
+  text-align:center;padding:40px 20px;
+  border-right:1px solid rgba(255,255,255,0.1);
+  transform:translateY(30px);opacity:0;
+  transition:transform 0.6s ease,opacity 0.6s ease;
+}
+.stat-item.visible{transform:translateY(0);opacity:1;}
+.stat-item:last-child{border-right:none;}
+.stat-icon{
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(58,171,204,0.18);border:1px solid rgba(58,171,204,0.3);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;
+}
+.stat-icon svg{width:18px;height:18px;stroke:var(--water2);}
+.stat-num{
+  font-size:clamp(52px,5.5vw,80px);font-weight:900;color:white;
+  letter-spacing:-3px;line-height:1;
+  text-shadow:0 2px 20px rgba(58,171,204,0.3);
+}
+.stat-label{
+  font-size:11px;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;color:rgba(255,255,255,0.45);
+  margin-top:10px;
+}
+
+/* ── SHARED SECTION ── */
+.section-eyebrow{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--water);margin-bottom:10px;}
+.section-title{font-size:clamp(26px,4vw,46px);font-weight:900;color:var(--navy);line-height:1.1;letter-spacing:-1px;}
+.section-desc{font-size:16px;font-weight:400;color:#666;line-height:1.85;max-width:540px;}
+
+/* ── NOSOTROS ── */
+.about{background:var(--beige);padding:100px 40px;}
+.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-text .section-desc{margin-top:20px;}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px;}
+.about-feat{
+  background:white;border-radius:16px;padding:22px;
+  border:1px solid var(--beige3);transition:transform .2s,box-shadow .2s;
+}
+.about-feat:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,53,102,0.1);}
+.about-feat-icon{width:40px;height:40px;border-radius:12px;background:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.about-feat-icon svg{width:18px;height:18px;stroke:white;}
+.about-feat-title{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.about-feat-desc{font-size:12px;font-weight:400;color:#888;line-height:1.5;}
+.about-image-side{position:relative;}
+/* Collage 3 fotos estilo Acquam */
+.about-collage{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:10px;
+  border-radius:24px;
+  overflow:hidden;
+  height:420px;
+  position:relative;
+}
+.about-collage-main{
+  grid-row:1/3;
+  overflow:hidden;
+}
+.about-collage-main img,
+.about-collage-side img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;transition:transform .4s ease;
+}
+.about-collage-main:hover img,
+.about-collage-side:hover img{transform:scale(1.04);}
+.about-collage-side{overflow:hidden;}
+/* Círculo central badge */
+.about-circle-badge{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:110px;height:110px;
+  border-radius:50%;
+  background:var(--navy);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  box-shadow:0 8px 32px rgba(26,53,102,0.45);
+  z-index:10;
+  border:3px solid rgba(255,255,255,0.2);
+}
+.about-circle-badge-num{
+  font-size:28px;font-weight:900;color:white;
+  letter-spacing:-1px;line-height:1;
+}
+.about-circle-badge-text{
+  font-size:9px;font-weight:800;color:rgba(255,255,255,0.75);
+  letter-spacing:1.5px;text-transform:uppercase;
+  line-height:1.4;margin-top:3px;
+}
+
+/* ── POR QUÉ NOSOTROS ── */
+.why{
+  position:relative;
+  padding:100px 40px;
+  background:url('Familias/nene.jpg') center center/cover no-repeat;
+  overflow:hidden;
+}
+.why::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(160deg,rgba(10,25,60,0.82) 0%,rgba(10,40,80,0.78) 100%);
+  z-index:0;
+}
+.why-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.why-header{text-align:center;margin-bottom:60px;}
+.why-header .section-eyebrow{color:var(--water);}
+.why-header .section-title{color:white;}
+.why-header .section-desc{margin:16px auto 0;color:rgba(255,255,255,0.7);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.why-card{
+  border-radius:22px;padding:40px 32px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+}
+.why-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,0.3);}
+.why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--water),#6de0f7);}
+.why-card-num{font-size:72px;font-weight:900;color:rgba(255,255,255,0.12);line-height:1;margin-bottom:16px;letter-spacing:-3px;}
+.why-card-icon{width:48px;height:48px;border-radius:14px;background:var(--water);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.why-card-icon svg{width:22px;height:22px;stroke:white;}
+.why-card-title{font-size:20px;font-weight:900;color:white;margin-bottom:12px;letter-spacing:-0.3px;}
+.why-card-desc{font-size:14px;font-weight:400;color:rgba(255,255,255,0.72);line-height:1.75;}
+
+/* ── MODELOS ── */
+.models{background:var(--gray);padding:100px 40px;}
+.models-inner{max-width:1200px;margin:0 auto;}
+.models-header{text-align:center;margin-bottom:48px;}
+.models-header .section-desc{margin:14px auto 0;}
+.models-tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;justify-content:center;}
+.models-tab{
+  display:flex;align-items:center;gap:8px;
+  border:2px solid var(--beige3);background:white;
+  border-radius:100px;padding:11px 24px;
+  font-size:12px;font-weight:800;color:var(--soft);
+  cursor:pointer;transition:all .2s;letter-spacing:0.3px;user-select:none;
+}
+.models-tab *{pointer-events:none;}
+.models-tab.active{background:var(--navy);border-color:var(--navy);color:white;}
+/* ── MODELO SHOWCASE (estilo Acquam) ── */
+.models-tab-section{display:none;}
+.models-tab-section.active{display:block;}
+.model-name-header{
+  font-size:clamp(44px,6vw,80px);font-weight:900;
+  color:var(--navy);letter-spacing:-3px;line-height:1;
+  margin-bottom:20px;
+}
+.model-showcase{
+  background:white;border-radius:24px;overflow:hidden;
+  display:grid;grid-template-columns:1fr 400px;
+  height:500px;
+  box-shadow:0 4px 40px rgba(26,53,102,0.10);
+}
+.model-showcase-visual{
+  position:relative;overflow:hidden;background:#F0F5FA;
+}
+.model-slides{position:absolute;inset:0;}
+.model-slide{display:none;position:absolute;inset:0;}
+.model-slide.active{display:block;}
+.model-slide img{width:100%;height:100%;object-fit:contain;display:block;padding:16px;background:white;}
+.model-slide-svg{width:100%;height:100%;}
+.model-nav-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:46px;height:46px;border-radius:50%;
+  background:white;border:none;cursor:pointer;
+  box-shadow:0 2px 16px rgba(0,0,0,0.14);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;z-index:2;color:var(--navy);
+}
+.model-nav-btn:hover{background:var(--navy);color:white;box-shadow:0 4px 20px rgba(26,53,102,0.3);}
+.model-nav-btn.prev{left:16px;}
+.model-nav-btn.next{right:16px;}
+.model-nav-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.5;}
+.model-badge-float{
+  position:absolute;top:16px;left:16px;
+  background:linear-gradient(90deg,#C8941A,#E8B820);color:white;
+  border-radius:100px;padding:5px 14px;
+  font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;z-index:3;
+}
+/* Panel derecho */
+.model-showcase-info{
+  border-left:1px solid rgba(0,0,0,0.07);
+  padding:32px 36px;
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+}
+.model-info-slides{display:flex;flex-direction:column;flex:1;}
+.model-info-slide{display:none;flex-direction:column;}
+.model-info-slide.active{display:flex;}
+.model-showcase-thumb{display:none;}
+.model-showcase-thumb img,.model-showcase-thumb-svg{display:none;}
+.model-showcase-badge{
+  display:inline-block;background:linear-gradient(90deg,#C8941A,#E8B820);color:white;
+  border-radius:100px;padding:3px 12px;font-size:9px;font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:12px;align-self:flex-start;
+}
+.model-showcase-name{display:none;}
+.model-showcase-desc{font-size:13px;color:#888;line-height:1.75;margin-bottom:24px;}
+.model-specs-panel h4{
+  font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--soft);margin-bottom:12px;
+}
+.spec-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #F2F2F2;font-size:13px;}
+.spec-row:last-child{border-bottom:none;}
+.spec-row-icon{
+  width:30px;height:30px;border-radius:8px;background:var(--beige);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.spec-row-icon svg{width:14px;height:14px;stroke:var(--navy);fill:none;stroke-width:2;}
+.spec-row-label{color:#888;flex:1;}
+.spec-row-val{font-weight:800;color:var(--navy);}
+.model-showcase-cta{
+  display:block;text-align:center;
+  background:var(--navy);color:white;
+  border-radius:14px;padding:16px;
+  font-size:13px;font-weight:800;letter-spacing:0.3px;
+  transition:all .2s;margin-top:20px;text-decoration:none;
+}
+.model-showcase-cta:hover{background:var(--water);}
+/* Contador en la imagen */
+.model-counter{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,0.45);color:white;
+  border-radius:100px;padding:4px 14px;
+  font-size:11px;font-weight:800;letter-spacing:1px;
+  z-index:3;pointer-events:none;white-space:nowrap;
+}
+/* Selector de modelos */
+.model-dots{display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.model-dot{
+  border:2px solid var(--beige3);background:white;
+  border-radius:100px;padding:7px 16px;
+  font-size:11px;font-weight:800;color:var(--soft);
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.model-dot.active{background:var(--navy);border-color:var(--navy);color:white;}
+
+/* ── PROCESO ── */
+.process{background:var(--navy);padding:100px 40px;position:relative;overflow:hidden;}
+.process::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:rgba(58,171,204,0.05);pointer-events:none;}
+.process::after{content:'';position:absolute;bottom:-150px;left:-150px;width:400px;height:400px;border-radius:50%;background:rgba(58,171,204,0.04);pointer-events:none;}
+.process-inner{max-width:1100px;margin:0 auto;}
+.process-header{text-align:center;margin-bottom:64px;}
+.process-header .section-eyebrow{color:rgba(255,255,255,0.4);}
+.process-header .section-title{color:white;}
+.process-header .section-desc{color:rgba(255,255,255,0.45);margin:14px auto 0;}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.process-steps::before{content:'';position:absolute;top:40px;left:calc(12.5% + 8px);right:calc(12.5% + 8px);height:1px;background:rgba(255,255,255,0.1);z-index:0;}
+.process-step{text-align:center;padding:0 16px;position:relative;z-index:1;}
+.step-circle{
+  width:80px;height:80px;border-radius:50%;
+  background:rgba(255,255,255,0.08);border:2.5px solid rgba(255,255,255,0.55);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 22px;font-size:26px;font-weight:900;color:white;
+  box-shadow:0 0 0 8px rgba(255,255,255,0.04);
+  transition:all .25s;
+}
+.process-step:hover .step-circle{background:var(--water);border-color:var(--water);box-shadow:0 0 0 8px rgba(58,171,204,0.15);}
+.step-title{font-size:15px;font-weight:800;color:white;margin-bottom:10px;letter-spacing:-0.2px;}
+.step-desc{font-size:13px;font-weight:400;color:rgba(255,255,255,0.5);line-height:1.65;}
+
+/* ── TESTIMONIOS ── */
+.testimonials{
+  position:relative;padding:100px 40px;
+  background:url('Familias/10anos.jpg') center center/cover no-repeat;
+  overflow:hidden;
+}
+.testimonials::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(8,20,50,0.86) 0%,rgba(10,35,75,0.82) 100%);
+  z-index:0;
+}
+.testimonials-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.testimonials-header{text-align:center;margin-bottom:56px;}
+.testimonials-header .section-eyebrow{color:var(--water);}
+.testimonials-header .section-title{color:white;}
+.testimonials-header .section-desc{margin:14px auto 0;color:rgba(255,255,255,0.65);}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.testimonial-card{
+  background:rgba(255,255,255,0.09);
+  border-radius:22px;padding:32px;
+  border:1px solid rgba(255,255,255,0.14);
+  backdrop-filter:blur(10px);
+  transition:transform .2s,box-shadow .2s;
+}
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,0.3);}
+.testimonial-quote{font-size:52px;font-weight:900;color:var(--water);line-height:1;margin-bottom:4px;}
+.testimonial-stars{color:#F5C842;font-size:15px;margin-bottom:14px;letter-spacing:3px;}
+.testimonial-text{font-size:14px;font-weight:400;color:rgba(255,255,255,0.82);line-height:1.8;margin-bottom:24px;font-style:italic;}
+.testimonial-author{display:flex;align-items:center;gap:14px;}
+.testimonial-avatar{
+  width:46px;height:46px;border-radius:50%;
+  background:var(--navy);display:flex;align-items:center;justify-content:center;
+  color:white;font-size:16px;font-weight:900;flex-shrink:0;
+}
+.testimonial-name{font-size:14px;font-weight:800;color:white;}
+.testimonial-place{font-size:12px;color:rgba(255,255,255,0.55);font-weight:600;margin-top:2px;}
+
+/* ── SEGUINOS ── */
+.seguinos{background:var(--navy2);padding:80px 40px;text-align:center;}
+.seguinos-inner{max-width:800px;margin:0 auto;}
+.seguinos h2{font-size:clamp(28px,4vw,52px);font-weight:900;color:white;letter-spacing:-1.5px;margin-bottom:10px;}
+.seguinos-sub{font-size:15px;font-weight:400;color:rgba(255,255,255,0.5);margin-bottom:48px;line-height:1.7;}
+.social-links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;}
+.social-link{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;padding:28px 36px;color:white;transition:all .2s;min-width:140px;
+}
+.social-link:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.25);transform:translateY(-4px);}
+.social-link svg{width:34px;height:34px;}
+.social-link-name{font-size:13px;font-weight:800;letter-spacing:0.5px;}
+
+/* ── UBICACIÓN ── */
+/* PRODUCCIÓN */
+.produccion{background:#0D2B45;padding:100px 40px;}
+.produccion-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 2fr;
+  align-items:center;gap:72px;
+}
+.produccion-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.4);margin-bottom:16px;
+}
+.produccion-title{
+  font-size:clamp(42px,5vw,72px);font-weight:800;
+  color:#fff;line-height:1.05;letter-spacing:-2px;margin-bottom:24px;
+}
+.produccion-desc{
+  font-size:16px;font-weight:400;
+  color:rgba(255,255,255,.55);line-height:1.7;
+}
+.produccion-video{
+  border-radius:12px;overflow:hidden;
+  box-shadow:0 16px 48px rgba(0,0,0,.4);
+  background:#000;
+  max-width:480px;
+}
+.produccion-video video{
+  width:100%;height:auto;display:block;
+}
+@media(max-width:860px){
+  .produccion-inner{grid-template-columns:1fr;gap:40px;}
+}
+
+.location{background:white;padding:100px 40px;}
+.location-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.location-info .section-desc{margin:14px 0 36px;}
+.location-detail{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;}
+.location-detail svg{width:20px;height:20px;flex-shrink:0;stroke:var(--water);margin-top:2px;}
+.loc-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-bottom:4px;}
+.loc-value{font-size:15px;font-weight:700;color:var(--navy);line-height:1.6;}
+.btn-maps{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:white;border-radius:100px;padding:14px 28px;font-size:13px;font-weight:800;transition:all .2s;margin-top:8px;}
+.btn-maps:hover{background:var(--water);}
+.btn-maps svg{width:14px;height:14px;stroke:white;}
+.location-map{border-radius:24px;overflow:hidden;box-shadow:0 12px 48px rgba(26,53,102,0.16);height:420px;}
+.location-map iframe{width:100%;height:100%;border:0;display:block;}
+
+/* ── FOOTER ── */
+.footer{background:var(--navy2);padding:48px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+.footer-logo img{height:52px;object-fit:contain;border-radius:8px;}
+.footer-text{font-size:13px;font-weight:600;letter-spacing:0.3px;color:rgba(255,255,255,0.65);text-align:center;line-height:1.8;}
+.footer-credit{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);}
+
+/* ── FLOAT WA ── */
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:200;width:60px;height:60px;border-radius:50%;background:#25D366;color:white;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,0.45);transition:transform .2s,box-shadow .2s;}
+.float-wa:hover{transform:scale(1.08);box-shadow:0 10px 32px rgba(37,211,102,0.55);}
+.float-wa svg{width:28px;height:28px;}
+
+/* ── SCROLL REVEAL ── */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.reveal-left{
+  opacity:0;
+  transform:translateX(-40px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{
+  opacity:0;
+  transform:translateX(40px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+
+/* ── MOBILE NAV ── */
+.mobile-nav{
+  display:none;
+  position:fixed;top:84px;left:0;right:0;z-index:99;
+  background:white;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  box-shadow:0 8px 24px rgba(0,0,0,0.1);
+  padding:8px 0 16px;
+}
+.mobile-nav.open{display:block;}
+.mobile-nav a{
+  display:block;padding:14px 24px;
+  font-size:13px;font-weight:700;color:var(--navy);
+  letter-spacing:0.5px;text-transform:uppercase;
+  border-bottom:1px solid rgba(0,0,0,0.04);
+  transition:background .15s;
+}
+.mobile-nav a:hover{background:var(--beige);}
+.mobile-nav .btn-wa{
+  margin:12px 20px 0;border-radius:100px;
+  display:flex;justify-content:center;
+  padding:13px 20px;
+}
+
+/* ── TABLET 900px ── */
+@media(max-width:900px){
+  /* Header */
+  .header{padding:0 20px;height:72px;}
+  .header-logo img{height:58px;}
+  .header-nav{display:none;}
+  .header-menu{display:block;}
+  /* Hero */
+  .hero{height:auto;min-height:0;padding:96px 24px 60px;justify-content:flex-start;}
+  /* Intro strip */
+  .intro-strip-inner{grid-template-columns:1fr;gap:0;}
+  .intro-divider{display:none;}
+  .intro-item{padding:22px 24px;}
+  /* Stats */
+  .stats{padding:70px 24px;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .stat-item:nth-child(odd){border-right:1px solid rgba(255,255,255,0.08);}
+  /* About */
+  .about{padding:80px 24px;}
+  .about-inner{grid-template-columns:1fr;gap:40px;}
+  .about-image-side{display:none;}
+  .about-features{grid-template-columns:1fr 1fr;}
+  /* Why */
+  .why{padding:80px 24px;}
+  .why-grid{grid-template-columns:1fr;gap:20px;}
+  .why-card{padding:32px 28px;}
+  /* Models */
+  .models{padding:80px 24px;}
+  .model-showcase{grid-template-columns:1fr;height:auto;}
+  .model-showcase-visual{height:300px;}
+  .model-name-header{font-size:clamp(36px,7vw,56px);margin-bottom:14px;}
+  /* Process */
+  .process{padding:80px 24px;}
+  .process-steps{grid-template-columns:1fr 1fr;gap:40px;}
+  .process-steps::before{display:none;}
+  /* Testimonials */
+  .testimonials{padding:80px 24px;}
+  .testimonials-grid{grid-template-columns:1fr;}
+  /* Seguinos */
+  .seguinos{padding:64px 24px;}
+  /* Location */
+  .location{padding:80px 24px;}
+  .location-inner{grid-template-columns:1fr;}
+  .location-map{height:300px;}
+  /* Footer */
+  .footer{flex-direction:column;align-items:center;text-align:center;gap:16px;}
+  .footer-logo img{filter:brightness(0) invert(1);}
+}
+
+/* ── MOBILE 560px ── */
+@media(max-width:560px){
+  /* Header */
+  .header{padding:0 16px;height:64px;}
+  .header-logo img{height:48px;}
+  .mobile-nav{top:64px;}
+  /* Hero */
+  .hero{height:auto;min-height:0;padding:100px 16px 64px;justify-content:flex-start;}
+  .hero h1{font-size:clamp(28px,8vw,48px);}
+  .hero-sub{font-size:14px;margin-bottom:32px;}
+  .hero-badge{display:none;}
+  .hero-ctas{flex-direction:column;align-items:center;gap:10px;width:100%;}
+  .btn-primary,.btn-outline{width:100%;max-width:320px;justify-content:center;}
+  /* Intro strip */
+  .intro-item{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,0.15);}
+  .intro-item:last-child{border-bottom:none;}
+  .intro-item h3{font-size:14px;}
+  .intro-item-icon{width:36px;height:36px;margin-bottom:8px;}
+  /* Stats */
+  .stats{padding:56px 16px;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .stat-num{font-size:clamp(40px,10vw,60px);}
+  .stat-label{font-size:10px;letter-spacing:1.5px;}
+  /* About */
+  .about{padding:56px 16px;}
+  .about-features{grid-template-columns:1fr;}
+  .about-feat{padding:18px;}
+  /* Why */
+  .why{padding:56px 16px;}
+  .why-grid{grid-template-columns:1fr;}
+  .why-card{padding:28px 22px;}
+  .why-card-num{font-size:52px;}
+  /* Models */
+  .models{padding:56px 16px;}
+  .model-name-header{font-size:clamp(32px,9vw,52px);letter-spacing:-2px;margin-bottom:12px;}
+  .model-showcase-visual{height:240px;}
+  .model-showcase-info{padding:20px 18px;}
+  .model-showcase-desc{font-size:12px;margin-bottom:16px;}
+  .spec-row{font-size:12px;padding:7px 0;}
+  .spec-row-icon{width:26px;height:26px;}
+  .model-showcase-cta{padding:14px;font-size:12px;margin-top:14px;}
+  .model-dots{margin-top:14px;}
+  .models-tab{padding:9px 18px;font-size:11px;}
+  /* Process */
+  .process{padding:56px 16px;}
+  .process-steps{grid-template-columns:1fr;}
+  .process-header{margin-bottom:44px;}
+  .step-circle{width:64px;height:64px;font-size:22px;margin-bottom:16px;}
+  .step-title{font-size:14px;}
+  /* Testimonials */
+  .testimonials{padding:56px 16px;}
+  .testimonial-card{padding:24px 20px;}
+  .testimonial-text{font-size:13px;}
+  /* Seguinos */
+  .seguinos{padding:56px 16px;}
+  .social-links{gap:10px;}
+  .social-link{padding:20px 24px;min-width:calc(50% - 5px);}
+  /* Location */
+  .location{padding:56px 16px;}
+  .location-map{height:260px;}
+  .btn-maps{width:100%;justify-content:center;}
+  /* Footer */
+  .footer{padding:28px 16px;gap:14px;}
+  .footer-text{font-size:12px;}
+  /* Sections */
+  .section-title{font-size:clamp(24px,7vw,38px);}
+  .section-desc{font-size:14px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<!-- HOT SALE BANNER -->
+<a href="#porto-sale" style="display:block;width:100%;overflow:hidden;background:#CC0000;height:140px;cursor:pointer;text-decoration:none;margin-top:84px;">
+  <div style="display:flex;animation:scrollBanner 30s linear infinite;white-space:nowrap;height:140px;align-items:center;">
+    <img src="HOTSALE.png" style="height:140px;display:block;flex-shrink:0;"/>
+    <img src="HOTSALE.png" style="height:140px;display:block;flex-shrink:0;"/>
+    <img src="HOTSALE.png" style="height:140px;display:block;flex-shrink:0;"/>
+  </div>
+</a>
+<style>
+@keyframes scrollBanner{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-33.333%);}
+}
+@media(max-width:768px){
+  a[href="#porto-sale"]{height:70px!important;margin-top:70px!important;}
+  a[href="#porto-sale"] div{height:70px!important;}
+  a[href="#porto-sale"] img{height:70px!important;}
+}
+</style>
+
+<header class="header">
+  <a href="#inicio" class="header-logo">
+    <img src="Logo/logo.sinfondo.png" alt="Porto Piscinas"/>
+  </a>
+  <nav class="header-nav">
+    <a href="#nosotros">Nosotros</a>
+    <a href="#modelos">Modelos</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20sobre%20las%20piscinas." class="btn-wa" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Consultá ahora
+    </a>
+  </nav>
+  <div class="header-menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </div>
+</header>
+
+<!-- MENÚ MOBILE -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#nosotros" onclick="closeMobileNav()">Nosotros</a>
+  <a href="#modelos" onclick="closeMobileNav()">Modelos</a>
+  <a href="#proceso" onclick="closeMobileNav()">Proceso</a>
+  <a href="#contacto" onclick="closeMobileNav()">Contacto</a>
+  <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20sobre%20las%20piscinas." class="btn-wa" target="_blank" onclick="closeMobileNav()">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Consultá ahora
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-animated-bubble">
+    <div class="bubble" style="width:18px;height:18px;bottom:-20px;left:8%;--d:9s;--dl:-4s;--drift:-20px;"></div>
+    <div class="bubble" style="width:30px;height:30px;bottom:-35px;left:16%;--d:11s;--dl:-7s;--drift:25px;"></div>
+    <div class="bubble" style="width:12px;height:12px;bottom:-15px;left:24%;--d:7s;--dl:-2s;--drift:-15px;"></div>
+    <div class="bubble" style="width:45px;height:45px;bottom:-50px;left:33%;--d:13s;--dl:-9s;--drift:30px;"></div>
+    <div class="bubble" style="width:22px;height:22px;bottom:-25px;left:42%;--d:8s;--dl:-5s;--drift:-25px;"></div>
+    <div class="bubble" style="width:38px;height:38px;bottom:-42px;left:51%;--d:10s;--dl:-1s;--drift:20px;"></div>
+    <div class="bubble" style="width:16px;height:16px;bottom:-18px;left:60%;--d:7.5s;--dl:-6s;--drift:-18px;"></div>
+    <div class="bubble" style="width:55px;height:55px;bottom:-60px;left:68%;--d:14s;--dl:-3s;--drift:35px;"></div>
+    <div class="bubble" style="width:25px;height:25px;bottom:-28px;left:76%;--d:9.5s;--dl:-8s;--drift:-22px;"></div>
+    <div class="bubble" style="width:14px;height:14px;bottom:-16px;left:84%;--d:6.5s;--dl:-4s;--drift:12px;"></div>
+    <div class="bubble" style="width:40px;height:40px;bottom:-45px;left:90%;--d:12s;--dl:-10s;--drift:-30px;"></div>
+    <div class="bubble" style="width:20px;height:20px;bottom:-22px;left:4%;--d:8.5s;--dl:-6s;--drift:18px;"></div>
+  </div>
+
+  <div class="hero-badge">
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="rgba(255,255,255,0.7)"><circle cx="4" cy="4" r="4"/></svg>
+    Porto Piscinas · Córdoba, Argentina
+  </div>
+
+  <h1>Tu pileta de fibra de vidrio,<br/><em>fabricada acá.</em></h1>
+
+  <p class="hero-sub">
+    Más de 10 años fabricando piletas de fibra de vidrio.<br/>
+    Diseño, calidad y entrega en todo el país — al mejor precio del mercado.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#" class="btn-primary" target="_blank" onclick="var n=Math.random()<0.5?'5493518786914':'5493512170986';this.href='https://wa.me/'+n+'?text=Hola!%20Quiero%20consultar%20sobre%20las%20piscinas.';">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Consultá por WhatsApp
+    </a>
+    <a href="#modelos" class="btn-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 7h20M2 12h20M2 17h10"/></svg>
+      Ver catálogo completo
+    </a>
+  </div>
+</section>
+
+<!-- PORTO SALE -->
+<section id="porto-sale" style="background:#CC0000;padding:80px 40px;">
+  <div style="max-width:1200px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:52px;">
+      <p style="font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:12px;">🔥 Tiempo limitado</p>
+      <h2 style="font-size:clamp(36px,6vw,72px);font-weight:900;color:white;letter-spacing:-2px;line-height:1;margin-bottom:16px;">Porto Sale</h2>
+      <p style="font-size:18px;color:rgba(255,255,255,0.85);font-weight:500;">Pileta completa · Promo válida hasta el 20 de mayo</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;margin-bottom:40px;">
+
+      <!-- Porto 430 -->
+      <div style="background:white;border-radius:24px;padding:32px 28px;text-align:center;position:relative;overflow:hidden;">
+        <span style="position:absolute;top:16px;right:16px;background:#CC0000;color:white;font-size:10px;font-weight:800;letter-spacing:1px;padding:5px 12px;border-radius:100px;">25% OFF</span>
+        <img src="Piletas/Porto 430.png" alt="Porto 430" style="width:100%;height:170px;object-fit:contain;margin-bottom:20px;"/>
+        <h3 style="font-size:22px;font-weight:900;color:#0D2B45;margin-bottom:4px;">Porto 430</h3>
+        <p style="font-size:13px;color:#6278A0;margin-bottom:16px;">4,30 × 3,00 m</p>
+        <p style="font-size:32px;font-weight:900;color:#CC0000;letter-spacing:-1px;margin-bottom:16px;">$2.150.000</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+          <div style="background:#E8F8F0;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <span style="font-size:16px;">🚚</span><span style="font-size:13px;font-weight:800;color:#00875A;">Envío GRATIS</span>
+          </div>
+          <div style="background:#EEF4FF;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <span style="font-size:16px;">🎁</span><span style="font-size:13px;font-weight:800;color:#0D2B45;">Kit de instalación de regalo</span>
+          </div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20aprovechar%20el%20Porto%20Sale%20del%20modelo%20Porto%20430." target="_blank" style="display:block;background:#0D2B45;color:white;border-radius:100px;padding:14px 20px;font-size:14px;font-weight:800;text-decoration:none;">Quiero esta →</a>
+      </div>
+
+      <!-- Porto 500 -->
+      <div style="background:white;border-radius:24px;padding:32px 28px;text-align:center;position:relative;overflow:hidden;">
+        <span style="position:absolute;top:16px;right:16px;background:#CC0000;color:white;font-size:10px;font-weight:800;letter-spacing:1px;padding:5px 12px;border-radius:100px;">25% OFF</span>
+        <img src="Piletas/Porto 500.png" alt="Porto 500" style="width:100%;height:170px;object-fit:contain;margin-bottom:20px;"/>
+        <h3 style="font-size:22px;font-weight:900;color:#0D2B45;margin-bottom:4px;">Porto 500</h3>
+        <p style="font-size:13px;color:#6278A0;margin-bottom:16px;">5,00 × 3,00 m</p>
+        <p style="font-size:32px;font-weight:900;color:#CC0000;letter-spacing:-1px;margin-bottom:16px;">$2.400.000</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+          <div style="background:#E8F8F0;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <span style="font-size:16px;">🚚</span><span style="font-size:13px;font-weight:800;color:#00875A;">Envío GRATIS</span>
+          </div>
+          <div style="background:#EEF4FF;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <span style="font-size:16px;">🎁</span><span style="font-size:13px;font-weight:800;color:#0D2B45;">Kit de instalación de regalo</span>
+          </div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20aprovechar%20el%20Porto%20Sale%20del%20modelo%20Porto%20500." target="_blank" style="display:block;background:#0D2B45;color:white;border-radius:100px;padding:14px 20px;font-size:14px;font-weight:800;text-decoration:none;">Quiero esta →</a>
+      </div>
+
+      <!-- Porto 501 -->
+      <div style="background:white;border-radius:24px;padding:32px 28px;text-align:center;position:relative;overflow:hidden;">
+        <span style="position:absolute;top:16px;right:16px;background:#CC0000;color:white;font-size:10px;font-weight:800;letter-spacing:1px;padding:5px 12px;border-radius:100px;">25% OFF</span>
+        <img src="Piletas/Porto 501.png" alt="Porto 501" style="width:100%;height:170px;object-fit:contain;margin-bottom:20px;"/>
+        <h3 style="font-size:22px;font-weight:900;color:#0D2B45;margin-bottom:4px;">Porto 501</h3>
+        <p style="font-size:13px;color:#6278A0;margin-bottom:16px;">5,00 × 3,00 m · Con solarium</p>
+        <p style="font-size:32px;font-weight:900;color:#CC0000;letter-spacing:-1px;margin-bottom:16px;">$2.300.000</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+          <div style="background:#E8F8F0;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <span style="font-size:16px;">🚚</span><span style="font-size:13px;font-weight:800;color:#00875A;">Envío GRATIS</span>
+          </div>
+          <div style="background:#EEF4FF;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <span style="font-size:16px;">🎁</span><span style="font-size:13px;font-weight:800;color:#0D2B45;">Kit de instalación de regalo</span>
+          </div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20aprovechar%20el%20Porto%20Sale%20del%20modelo%20Porto%20501." target="_blank" style="display:block;background:#0D2B45;color:white;border-radius:100px;padding:14px 20px;font-size:14px;font-weight:800;text-decoration:none;">Quiero esta →</a>
+      </div>
+
+      <!-- Porto 700 -->
+      <div style="background:white;border-radius:24px;padding:32px 28px;text-align:center;position:relative;overflow:hidden;">
+        <span style="position:absolute;top:16px;right:16px;background:#CC0000;color:white;font-size:10px;font-weight:800;letter-spacing:1px;padding:5px 12px;border-radius:100px;">25% OFF</span>
+        <img src="Piletas/porto 700 nueva.png" alt="Porto 700" style="width:100%;height:170px;object-fit:contain;margin-bottom:20px;"/>
+        <h3 style="font-size:22px;font-weight:900;color:#0D2B45;margin-bottom:4px;">Porto 700</h3>
+        <p style="font-size:13px;color:#6278A0;margin-bottom:16px;">7,00 × 3,00 m · Con solarium</p>
+        <p style="font-size:32px;font-weight:900;color:#CC0000;letter-spacing:-1px;margin-bottom:16px;">$2.700.000</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+          <div style="background:#E8F8F0;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <span style="font-size:16px;">🚚</span><span style="font-size:13px;font-weight:800;color:#00875A;">Envío GRATIS</span>
+          </div>
+          <div style="background:#EEF4FF;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <span style="font-size:16px;">🎁</span><span style="font-size:13px;font-weight:800;color:#0D2B45;">Kit de instalación de regalo</span>
+          </div>
+        </div>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20aprovechar%20el%20Porto%20Sale%20del%20modelo%20Porto%20700." target="_blank" style="display:block;background:#0D2B45;color:white;border-radius:100px;padding:14px 20px;font-size:14px;font-weight:800;text-decoration:none;">Quiero esta →</a>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;color:rgba(255,255,255,0.55);font-size:12px;">* Promoción válida hasta el 20 de mayo. Precios sujetos a disponibilidad de stock.</p>
+
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="intro-strip-inner">
+    <div class="intro-item reveal">
+      <div class="intro-item-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Fabricación propia</h3>
+      <p>Controlamos todo el proceso</p>
+    </div>
+    <div class="intro-divider"></div>
+    <div class="intro-item reveal" style="transition-delay:.15s">
+      <div class="intro-item-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <h3>Mejor precio del mercado</h3>
+      <p>Sin intermediarios</p>
+    </div>
+    <div class="intro-divider"></div>
+    <div class="intro-item reveal" style="transition-delay:.3s">
+      <div class="intro-item-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <h3>Entrega en todo el país</h3>
+      <p>Coordinamos la logística</p>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-bg"></div>
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="stat-num" data-target="10" data-prefix="+">+10</div>
+      <div class="stat-label">Años de trayectoria</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="7" width="20" height="13" rx="3"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+      </div>
+      <div class="stat-num" data-target="6">6</div>
+      <div class="stat-label">Modelos disponibles</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="stat-num" data-target="24">24</div>
+      <div class="stat-label">Provincias con entrega</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="stat-num" data-target="100" data-suffix="%">100%</div>
+      <div class="stat-label">Fabricación propia</div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros" class="about">
+  <div class="about-inner">
+    <div class="about-text reveal-left">
+      <p class="section-eyebrow">Quiénes somos</p>
+      <h2 class="section-title">Fabricamos piletas<br/>desde 2016.</h2>
+      <p class="section-desc">
+        Porto Piscinas nació en Córdoba con una propuesta simple: piletas de fibra de vidrio
+        de calidad, al mejor precio del mercado. Hoy operamos desde nuestro espacio propio
+        en el Parque Industrial Polo 52 y entregamos en todo el país.
+      </p>
+      <div class="about-features">
+        <div class="about-feat">
+          <div class="about-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="about-feat-title">Fibra de vidrio</div>
+          <div class="about-feat-desc">Material duradero, liviano y de fácil mantenimiento.</div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="about-feat-title">Entrega rápida</div>
+          <div class="about-feat-desc">Coordinamos la entrega hasta tu domicilio.</div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="about-feat-title">Mejor precio</div>
+          <div class="about-feat-desc">Al mejor precio del mercado. Financiación disponible.</div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="about-feat-title">Atención directa</div>
+          <div class="about-feat-desc">Hablás con nosotros en todo el proceso.</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-image-side reveal-right">
+      <div class="about-collage">
+        <div class="about-collage-main">
+          <img src="Familias/6326576d804d669246298d134bb1b84e.jpg" alt="Familia disfrutando la pileta"/>
+        </div>
+        <div class="about-collage-side">
+          <img src="Familias/6df9dbd15c4fa7f33491215635fb123b.jpg" alt="Momentos en familia"/>
+        </div>
+        <div class="about-collage-side">
+          <img src="Familias/eac16f41437c7ff598ef6ed680c39d72.jpg" alt="Verano en pileta Porto"/>
+        </div>
+        <div class="about-circle-badge">
+          <div class="about-circle-badge-num">+10</div>
+          <div class="about-circle-badge-text">años de<br/>trayectoria</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section class="why">
+  <div class="why-inner">
+    <div class="why-header reveal">
+      <p class="section-eyebrow">Por qué elegirnos</p>
+      <h2 class="section-title">Tres diferencias que importan.</h2>
+      <p class="section-desc">No somos un revendedor. Fabricamos nosotros, controlamos la calidad y entregamos directo.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal" style="transition-delay:.1s">
+        <div class="why-card-num">01</div>
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="why-card-title">Calidad de fabricación</h3>
+        <p class="why-card-desc">Cada pileta se fabrica en nuestro taller en Córdoba con fibra de vidrio de alta resistencia. Controlamos todo el proceso desde el molde hasta la terminación.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:.25s">
+        <div class="why-card-num">02</div>
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 class="why-card-title">Mejor precio del mercado</h3>
+        <p class="why-card-desc">Al fabricar nosotros, eliminamos intermediarios. Eso se traduce en el mejor precio del mercado para familias que quieren calidad real. Disponemos financiación.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:.4s">
+        <div class="why-card-num">03</div>
+        <div class="why-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3 class="why-card-title">Entrega organizada</h3>
+        <p class="why-card-desc">Coordinamos la logística y hacemos la entrega en tu domicilio. Entregamos en todas las provincias del país.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODELOS -->
+<section id="modelos" class="models">
+  <div class="models-inner">
+    <div class="models-header reveal">
+      <p class="section-eyebrow">Nuestros modelos</p>
+      <h2 class="section-title">Elegí el que<br/>se adapta a tu espacio.</h2>
+      <p class="section-desc">Todos nuestros modelos se fabrican en Córdoba con fibra de vidrio de alta resistencia.</p>
+    </div>
+
+    <div class="models-tabs">
+      <div class="models-tab active" onclick="switchTab('clasica',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="13" rx="3"/></svg>
+        Piscina Clásica
+      </div>
+      <div class="models-tab" onclick="switchTab('solarium',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        Piscinas &amp; Solarium
+      </div>
+    </div>
+
+    <!-- CLÁSICA -->
+    <div id="tab-clasica" class="models-tab-section active">
+      <div class="model-name-header" id="name-clasica">Porto 430</div>
+      <div class="model-showcase">
+        <!-- VISUAL IZQUIERDA -->
+        <div class="model-showcase-visual">
+          <button class="model-nav-btn prev" onclick="navigateModel('clasica',-1)" aria-label="Anterior">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="model-slides" id="slides-clasica">
+            <div class="model-slide active" data-name="Porto 430">
+              <img src="Piletas/Porto 430.png" alt="Porto 430"/>
+            </div>
+            <div class="model-slide" data-name="Porto 500">
+              <img src="Piletas/Porto 500.png" alt="Porto 500"/>
+            </div>
+            <div class="model-slide" data-name="Porto 630">
+              <img src="Piletas/Porto 630.png" alt="Porto 630"/>
+            </div>
+            <div class="model-slide" data-name="Porto 750">
+              <img src="Piletas/Porto 750.png" alt="Porto 750"/>
+            </div>
+          </div>
+          <button class="model-nav-btn next" onclick="navigateModel('clasica',1)" aria-label="Siguiente">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="model-counter" id="counter-clasica">Modelo 1 / 5</div>
+        </div>
+        <!-- INFO DERECHA -->
+        <div class="model-showcase-info">
+          <div class="model-info-slides" id="info-clasica">
+            <!-- Porto 430 -->
+            <div class="model-info-slide active">
+              <div class="model-showcase-thumb"><img src="Piletas/Porto 430.png" alt="Porto 430"/></div>
+              <h3 class="model-showcase-name">Porto 430</h3>
+              <p class="model-showcase-desc">Ideal para patios y espacios reducidos. Diseño rectangular clásico con escalinata integrada, perfecta para refrescarse en familia.</p>
+              <div class="model-specs-panel">
+                <h4>Características Técnicas</h4>
+                <div class="spec-row">
+                  <div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M5 9l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div>
+                  <span class="spec-row-label">Largo</span><span class="spec-row-val">4,30 metros</span>
+                </div>
+                <div class="spec-row">
+                  <div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/></svg></div>
+                  <span class="spec-row-label">Ancho</span><span class="spec-row-val">3,00 metros</span>
+                </div>
+                <div class="spec-row">
+                  <div class="spec-row-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/></svg></div>
+                  <span class="spec-row-label">Profundidad</span><span class="spec-row-val">1,40 m</span>
+                </div>
+                <div class="spec-row">
+                  <div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg></div>
+                  <span class="spec-row-label">Volumen</span><span class="spec-row-val">12.000 lts</span>
+                </div>
+                <div class="spec-row">
+                  <div class="spec-row-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div>
+                  <span class="spec-row-label">Sup. espejo</span><span class="spec-row-val">10,8 m²</span>
+                </div>
+              </div>
+              <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20430." class="model-showcase-cta" target="_blank">Consultar precio →</a>
+            </div>
+            <!-- Porto 500 -->
+            <div class="model-info-slide">
+              <div class="model-showcase-thumb"><img src="Piletas/Porto 500.png" alt="Porto 500"/></div>
+              <h3 class="model-showcase-name">Porto 500</h3>
+              <p class="model-showcase-desc">La elección más popular para familias. Espacio cómodo para nadar y jugar, con las dimensiones perfectas para la mayoría de los patios.</p>
+              <div class="model-specs-panel">
+                <h4>Características Técnicas</h4>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M5 9l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><span class="spec-row-label">Largo</span><span class="spec-row-val">5,00 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/></svg></div><span class="spec-row-label">Ancho</span><span class="spec-row-val">3,00 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/></svg></div><span class="spec-row-label">Profundidad</span><span class="spec-row-val">1,40 m</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg></div><span class="spec-row-label">Volumen</span><span class="spec-row-val">14.000 lts</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><span class="spec-row-label">Sup. espejo</span><span class="spec-row-val">11,61 m²</span></div>
+              </div>
+              <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20500." class="model-showcase-cta" target="_blank">Consultar precio →</a>
+            </div>
+            <!-- Porto 630 -->
+            <div class="model-info-slide">
+              <div class="model-showcase-thumb">
+                <img src="Piletas/Porto 630.png" alt="Porto 630"/>
+              </div>
+              <h3 class="model-showcase-name">Porto 630</h3>
+              <p style="display:inline-flex;align-items:center;gap:6px;background:rgba(11,170,200,0.12);border:1px solid rgba(11,170,200,0.3);color:#0BAAC8;font-size:11px;font-weight:700;padding:6px 14px;border-radius:100px;margin-bottom:10px;">⏳ Disponible en las próximas semanas — sin stock por el momento</p>
+              <p class="model-showcase-desc">Para quienes buscan más espacio para nadar. La opción intermedia que combina comodidad de nado con un espacio generoso para toda la familia.</p>
+              <div class="model-specs-panel">
+                <h4>Características Técnicas</h4>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M5 9l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><span class="spec-row-label">Largo</span><span class="spec-row-val">6,30 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/></svg></div><span class="spec-row-label">Ancho</span><span class="spec-row-val">3,00 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/></svg></div><span class="spec-row-label">Profundidad</span><span class="spec-row-val">1,40 m</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg></div><span class="spec-row-label">Volumen</span><span class="spec-row-val">18.000 lts</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><span class="spec-row-label">Sup. espejo</span><span class="spec-row-val">14,85 m²</span></div>
+              </div>
+              <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20anotarme%20para%20cuando%20el%20modelo%20Porto%20630%20est%C3%A9%20disponible." class="model-showcase-cta" target="_blank" style="opacity:0.85;">Avisarme cuando esté disponible →</a>
+            </div>
+            <!-- Porto 750 -->
+            <div class="model-info-slide">
+              <div class="model-showcase-thumb"><img src="Piletas/Porto 750.png" alt="Porto 750"/></div>
+              <h3 class="model-showcase-name">Porto 750</h3>
+              <p class="model-showcase-desc">El modelo premium de nuestra línea. Para quienes quieren lo mejor: espacio, profundidad y presencia en cualquier jardín.</p>
+              <div class="model-specs-panel">
+                <h4>Características Técnicas</h4>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M5 9l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><span class="spec-row-label">Largo</span><span class="spec-row-val">7,50 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/></svg></div><span class="spec-row-label">Ancho</span><span class="spec-row-val">3,15 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/></svg></div><span class="spec-row-label">Profundidad</span><span class="spec-row-val">1,40 m</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg></div><span class="spec-row-label">Volumen</span><span class="spec-row-val">22.000 lts</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><span class="spec-row-label">Sup. espejo</span><span class="spec-row-val">20,52 m²</span></div>
+              </div>
+              <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20750." class="model-showcase-cta" target="_blank">Consultar precio →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Dots navegación -->
+      <div class="model-dots" id="dots-clasica">
+        <button class="model-dot active" onclick="goToModel('clasica',0)">Porto 430</button>
+        <button class="model-dot" onclick="goToModel('clasica',1)">Porto 500</button>
+        <button class="model-dot" onclick="goToModel('clasica',2)">Porto 630</button>
+        <button class="model-dot" onclick="goToModel('clasica',3)">Porto 750</button>
+      </div>
+    </div>
+
+    <!-- SOLARIUM -->
+    <div id="tab-solarium" class="models-tab-section">
+      <div class="model-name-header" id="name-solarium">Porto 501</div>
+      <div class="model-showcase">
+        <div class="model-showcase-visual">
+          <button class="model-nav-btn prev" onclick="navigateModel('solarium',-1)" aria-label="Anterior">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="model-slides" id="slides-solarium">
+            <div class="model-slide active" data-name="Porto 501">
+              <img src="Piletas/Porto 501.png" alt="Porto 501 Solarium"/>
+            </div>
+            <div class="model-slide" data-name="Porto 700">
+              <span class="model-badge-float">Más vendida</span>
+              <img src="Piletas/porto 700 nueva.png" alt="Porto 700 Solarium"/>
+            </div>
+          </div>
+          <button class="model-nav-btn next" onclick="navigateModel('solarium',1)" aria-label="Siguiente">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="model-counter" id="counter-solarium">Modelo 1 / 2</div>
+        </div>
+        <div class="model-showcase-info">
+          <div class="model-info-slides" id="info-solarium">
+            <div class="model-info-slide active">
+              <div class="model-showcase-thumb"><img src="Piletas/Porto 501.png" alt="Porto 501"/></div>
+              <span class="model-showcase-badge" style="background:linear-gradient(90deg,#3AABCC,#1A3566);">Incluye Solarium</span>
+              <h3 class="model-showcase-name">Porto 501</h3>
+              <p class="model-showcase-desc">La experiencia completa: pileta y zona de descanso integradas. Perfecta para relajarse en el agua sin salir de la pileta.</p>
+              <div class="model-specs-panel">
+                <h4>Características Técnicas</h4>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M5 9l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><span class="spec-row-label">Largo</span><span class="spec-row-val">5,00 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/></svg></div><span class="spec-row-label">Ancho</span><span class="spec-row-val">3,00 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/></svg></div><span class="spec-row-label">Profundidad</span><span class="spec-row-val">1,40 m</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2"/></svg></div><span class="spec-row-label">Solarium</span><span class="spec-row-val">Integrado</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><span class="spec-row-label">Ideal para</span><span class="spec-row-val">Descanso en agua</span></div>
+              </div>
+              <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20501%20con%20Solarium." class="model-showcase-cta" target="_blank">Consultar precio →</a>
+            </div>
+            <!-- Porto 700 con solarium -->
+            <div class="model-info-slide">
+              <div class="model-showcase-thumb"><img src="Piletas/porto 700 nueva.png" alt="Porto 700"/></div>
+              <span class="model-showcase-badge" style="background:linear-gradient(90deg,#3AABCC,#1A3566);">Incluye Solarium</span>
+              <h3 class="model-showcase-name">Porto 700</h3>
+              <p class="model-showcase-desc">Nuestra estrella. El modelo preferido por las familias que buscan espacio real para nadar, con solarium integrado para relajarse.</p>
+              <div class="model-specs-panel">
+                <h4>Características Técnicas</h4>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M5 9l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><span class="spec-row-label">Largo</span><span class="spec-row-val">7,00 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/></svg></div><span class="spec-row-label">Ancho</span><span class="spec-row-val">3,00 metros</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/></svg></div><span class="spec-row-label">Profundidad</span><span class="spec-row-val">1,40 m</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2"/></svg></div><span class="spec-row-label">Solarium</span><span class="spec-row-val">Integrado</span></div>
+                <div class="spec-row"><div class="spec-row-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg></div><span class="spec-row-label">Volumen</span><span class="spec-row-val">20.000 lts</span></div>
+              </div>
+              <a href="https://wa.me/5493518786914?text=Hola!%20Quiero%20consultar%20el%20modelo%20Porto%20700%20con%20Solarium." class="model-showcase-cta" target="_blank">Consultar precio →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="model-dots" id="dots-solarium">
+        <button class="model-dot active" onclick="goToModel('solarium',0)">Porto 501</button>
+        <button class="model-dot" onclick="goToModel('solarium',1)">Porto 700</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INCLUYE -->
+<section style="background:#0D2B45;padding:80px 40px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:50px;">
+      <p class="section-eyebrow">Sin costos ocultos</p>
+      <h2 class="section-title" style="color:white;">Al comprar tu pileta con nosotros<br/>te llevás todo listo para la instalación completa.</h2>
+      <p class="section-desc" style="color:rgba(255,255,255,0.6);">Todo lo que necesitás para instalar y disfrutar tu pileta desde el primer día.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">⚙️</span><span style="color:white;font-weight:600;font-size:14px;">Gabinete</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🔧</span><span style="color:white;font-weight:600;font-size:14px;">Bomba 1/2 HP</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🌀</span><span style="color:white;font-weight:600;font-size:14px;">Filtro BR40</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">💧</span><span style="color:white;font-weight:600;font-size:14px;">Skimmer</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🔩</span><span style="color:white;font-weight:600;font-size:14px;">Cuello</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">↩️</span><span style="color:white;font-weight:600;font-size:14px;">2 Retornos</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🔄</span><span style="color:white;font-weight:600;font-size:14px;">10 Codos</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">⚡</span><span style="color:white;font-weight:600;font-size:14px;">1 TEE</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🔩</span><span style="color:white;font-weight:600;font-size:14px;">5 Bujes</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🔧</span><span style="color:white;font-weight:600;font-size:14px;">5 Manguitos roscados</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🪠</span><span style="color:white;font-weight:600;font-size:14px;">Caños (6 mts c/u)</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🚰</span><span style="color:white;font-weight:600;font-size:14px;">1 Llave de paso</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🧴</span><span style="color:white;font-weight:600;font-size:14px;">Sella rosca + Pegamento PVC</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🛡️</span><span style="color:white;font-weight:600;font-size:14px;">Sellador skimmer</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🧪</span><span style="color:white;font-weight:600;font-size:14px;">2 Bolsas de carga filtrante</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:22px;">🧱</span><span style="color:white;font-weight:600;font-size:14px;">Vuelta de losetas atérmicas</span>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;color:rgba(255,255,255,0.45);font-size:12px;margin-top:28px;">* Porto 430: 2 caños · Resto de modelos: 3 caños (6 mts c/u)</p>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso" class="process">
+  <div class="process-inner">
+    <div class="process-header reveal">
+      <p class="section-eyebrow">Cómo funciona</p>
+      <h2 class="section-title">De la consulta a tu pileta entregada.</h2>
+      <p class="section-desc">Un proceso simple, claro y sin sorpresas.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal" style="transition-delay:.1s">
+        <div class="step-circle">1</div>
+        <h3 class="step-title">Consultá por WhatsApp</h3>
+        <p class="step-desc">Contanos tu espacio disponible y el modelo que te interesa. Te asesoramos sin compromiso.</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.25s">
+        <div class="step-circle">2</div>
+        <h3 class="step-title">Recibí el presupuesto</h3>
+        <p class="step-desc">Te enviamos precio, formas de pago y detalles de entrega para que puedas decidir tranquilo.</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.4s">
+        <div class="step-circle">3</div>
+        <h3 class="step-title">Coordinamos entrega</h3>
+        <p class="step-desc">Una vez confirmada la compra, acordamos fecha y logística de entrega hasta tu domicilio.</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.55s">
+        <div class="step-circle">4</div>
+        <h3 class="step-title">Disfrutás tu pileta</h3>
+        <p class="step-desc">La pileta llega lista. ¡A disfrutar del verano sin complicaciones!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header reveal">
+      <p class="section-eyebrow">Lo que dicen nuestros clientes</p>
+      <h2 class="section-title">Más de 10 años de familias satisfechas.</h2>
+      <p class="section-desc">La confianza de nuestros clientes es el motor de Porto Piscinas.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal" style="transition-delay:.1s">
+        <div class="testimonial-quote">"</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Compramos el modelo 700 y quedamos encantados. La calidad es excelente y la entrega fue puntual. El equipo de Porto fue muy atento durante todo el proceso.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M</div>
+          <div>
+            <div class="testimonial-name">María G.</div>
+            <div class="testimonial-place">Córdoba Capital</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:.25s">
+        <div class="testimonial-quote">"</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Investigué varias marcas antes de decidirme. Porto me ofreció el mejor precio con la misma calidad. La entrega a Neuquén salió perfecto, sin ningún problema.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">R</div>
+          <div>
+            <div class="testimonial-name">Roberto D.</div>
+            <div class="testimonial-place">Neuquén</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:.4s">
+        <div class="testimonial-quote">"</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Armamos la pileta con solarium y fue la mejor decisión. Los chicos de Porto respondieron todas mis dudas por WhatsApp antes de comprar. Muy recomendables.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">L</div>
+          <div>
+            <div class="testimonial-name">Laura M.</div>
+            <div class="testimonial-place">San Luis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGUINOS -->
+<section class="seguinos">
+  <div class="seguinos-inner">
+    <h2>¡Seguinos!</h2>
+    <p class="seguinos-sub">Entrá a nuestras redes para ver fotos, novedades y promociones.</p>
+    <div class="social-links">
+      <a href="https://www.facebook.com/share/1E4A5J1LCb/?mibextid=wwXIfr" class="social-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <span class="social-link-name">Facebook</span>
+      </a>
+      <a href="https://www.instagram.com/piscinas.porto?igsh=OTdvejYwamZoN2ty" class="social-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        <span class="social-link-name">Instagram</span>
+      </a>
+      <a href="https://wa.me/5493518786914?text=Hola!%20Vi%20la%20web%20y%20quiero%20consultar." class="social-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span class="social-link-name">WhatsApp</span>
+      </a>
+      <a href="https://www.google.com/maps?q=-31.430524826049805,-64.10391235351562&z=17&hl=es" class="social-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <span class="social-link-name">Google</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NUESTRA PRODUCCIÓN -->
+<section class="produccion">
+  <div class="produccion-inner">
+    <div class="produccion-text">
+      <p class="produccion-eyebrow">Piscinas Porto</p>
+      <h2 class="produccion-title">Nuestra<br/>producción</h2>
+      <p class="produccion-desc">Cada pileta que sale de nuestro taller lleva el trabajo y la dedicación de nuestro equipo. Porque detrás de cada pileta hay una familia que la va a disfrutar.</p>
+    </div>
+    <div class="produccion-video">
+      <video
+        src="VideoWeb.mp4"
+        playsinline
+        autoplay
+        muted
+        loop
+        controls
+        preload="auto"
+      ></video>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="contacto" class="location">
+  <div class="location-inner">
+    <div class="location-info reveal-left">
+      <p class="section-eyebrow">Dónde encontrarnos</p>
+      <h2 class="section-title">Nuestra fábrica<br/>en Córdoba.</h2>
+      <p class="section-desc">Podés visitarnos en el Parque Industrial o coordinar una consulta remota.</p>
+
+      <div class="location-detail" style="margin-top:36px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <p class="loc-label">Dirección</p>
+          <p class="loc-value">Parque Industrial Polo 52<br/>Manzana 49 · Lote 23<br/>Córdoba, Argentina</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div>
+          <p class="loc-label">Horario de atención</p>
+          <p class="loc-value">Lunes a Viernes<br/>8:00 a 13:00 / 14:00 a 17:00</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+        <div>
+          <p class="loc-label">Teléfono</p>
+          <p class="loc-value">0351-8786914</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <p class="loc-label">Email</p>
+          <p class="loc-value">info@piscinasporto.com.ar</p>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps?q=-31.430524826049805,-64.10391235351562&z=17&hl=es" target="_blank" class="btn-maps">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Ver en Google Maps
+      </a>
+    </div>
+    <div class="location-map reveal-right">
+      <iframe
+        src="https://maps.google.com/maps?q=-31.43052,-64.10391&z=17&hl=es&output=embed"
+        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">
+    <img src="Logo/logo.sinfondo.png" alt="Porto Piscinas"/>
+  </div>
+  <div class="footer-text">
+    Porto Piscinas · Polo 52, Parque Industrial · Córdoba, Argentina<br/>
+    info@piscinasporto.com.ar · 0351-8786914
+  </div>
+  <div class="footer-credit">2bleclick · Marketing Digital</div>
+</footer>
+
+<!-- FLOAT WA -->
+<a href="https://wa.me/5493518786914?text=Hola!%20Vi%20la%20web%20y%20quiero%20consultar%20sobre%20las%20piscinas." class="float-wa" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// Menú mobile
+const menuBtn = document.querySelector('.header-menu');
+const mobileNav = document.getElementById('mobileNav');
+if (menuBtn && mobileNav) {
+  menuBtn.addEventListener('click', () => mobileNav.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!menuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+      mobileNav.classList.remove('open');
+    }
+  });
+}
+function closeMobileNav() {
+  if (mobileNav) mobileNav.classList.remove('open');
+}
+
+function switchTab(tab, el) {
+  document.querySelectorAll('.models-tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.models-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  el.classList.add('active');
+}
+
+// Carousel de modelos
+const modelIdx = {};
+function _syncModel(tabId, cur, next) {
+  const slidesEl  = document.getElementById('slides-' + tabId);
+  const infoEl    = document.getElementById('info-' + tabId);
+  const dotsEl    = document.getElementById('dots-' + tabId);
+  const nameEl    = document.getElementById('name-' + tabId);
+  const counterEl = document.getElementById('counter-' + tabId);
+  if (!slidesEl) return;
+  const slides = slidesEl.querySelectorAll('.model-slide');
+  const infos  = infoEl ? infoEl.querySelectorAll('.model-info-slide') : [];
+  const dots   = dotsEl ? dotsEl.querySelectorAll('.model-dot') : [];
+  slides[cur].classList.remove('active');
+  if (infos[cur]) infos[cur].classList.remove('active');
+  if (dots[cur])  dots[cur].classList.remove('active');
+  modelIdx[tabId] = next;
+  slides[next].classList.add('active');
+  if (infos[next]) infos[next].classList.add('active');
+  if (dots[next])  dots[next].classList.add('active');
+  if (nameEl && slides[next].dataset.name) nameEl.textContent = slides[next].dataset.name;
+  if (counterEl) counterEl.textContent = 'Modelo ' + (next + 1) + ' / ' + slides.length;
+}
+function navigateModel(tabId, dir) {
+  const slidesEl = document.getElementById('slides-' + tabId);
+  if (!slidesEl) return;
+  const slides = slidesEl.querySelectorAll('.model-slide');
+  const cur = modelIdx[tabId] || 0;
+  const next = (cur + dir + slides.length) % slides.length;
+  _syncModel(tabId, cur, next);
+}
+function goToModel(tabId, idx) {
+  const cur = modelIdx[tabId] || 0;
+  _syncModel(tabId, cur, idx);
+}
+
+// Animación de conteo stats
+function animateCount(el) {
+  const target = parseInt(el.dataset.target);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const duration = 1600;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = prefix + Math.round(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+        const numEl = entry.target.querySelector('.stat-num[data-target]');
+        if (numEl) animateCount(numEl);
+      }, i * 130);
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.stat-item').forEach(item => statsObserver.observe(item));
+
+// Header scroll shadow
+window.addEventListener('scroll', () => {
+  const h = document.querySelector('.header');
+  h.style.boxShadow = window.scrollY > 40 ? '0 2px 24px rgba(0,0,0,0.12)' : '0 2px 20px rgba(0,0,0,0.06)';
+});
+
+// Burbujas que suben al cargar
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  });
+});
+</script>
+
+</body>
+</html>
