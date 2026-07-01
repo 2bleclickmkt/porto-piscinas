@@ -409,6 +409,18 @@ a{text-decoration:none;color:inherit;}
 }
 .model-dot.active{background:var(--navy);border-color:var(--navy);color:white;}
 
+/* ── COLOR SWITCHER ── */
+.color-switcher{display:flex;align-items:center;gap:12px;margin-bottom:36px;justify-content:center;flex-wrap:wrap;}
+.color-switcher-label{font-size:13px;font-weight:700;color:var(--navy);letter-spacing:.5px;text-transform:uppercase;}
+.color-switcher-btns{display:flex;gap:8px;}
+.color-btn{display:flex;align-items:center;gap:8px;padding:10px 22px;border-radius:100px;border:2px solid var(--beige3);background:white;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;color:var(--navy);}
+.color-btn:hover{border-color:var(--navy);}
+.color-btn.active{background:var(--navy);color:white;border-color:var(--navy);}
+.color-btn.active.arena-btn{background:#8B6340;border-color:#8B6340;}
+.color-dot{width:13px;height:13px;border-radius:50%;display:inline-block;flex-shrink:0;}
+.azul-dot{background:#1A5FA8;}
+.arena-dot{background:#C8A96E;}
+
 /* ── PROCESO ── */
 .process{background:var(--navy);padding:100px 40px;position:relative;overflow:hidden;}
 .process::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:rgba(58,171,204,0.05);pointer-events:none;}
@@ -966,6 +978,19 @@ a{text-decoration:none;color:inherit;}
       <p class="section-eyebrow">Nuestros modelos</p>
       <h2 class="section-title">Elegí el que<br/>se adapta a tu espacio.</h2>
       <p class="section-desc">Todos nuestros modelos se fabrican en Córdoba con fibra de vidrio de alta resistencia.</p>
+    </div>
+
+    <!-- COLOR SWITCHER -->
+    <div class="color-switcher reveal">
+      <span class="color-switcher-label">Color:</span>
+      <div class="color-switcher-btns">
+        <button class="color-btn active" data-color="azul" onclick="setPoolColor('azul')">
+          <span class="color-dot azul-dot"></span> Azul
+        </button>
+        <button class="color-btn arena-btn" data-color="arena" onclick="setPoolColor('arena')">
+          <span class="color-dot arena-dot"></span> Arena
+        </button>
+      </div>
     </div>
 
     <div class="models-tabs">
@@ -1557,6 +1582,31 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
     window.open('https://wa.me/' + num + (text ? '?text=' + text : ''), '_blank');
   });
 });
+
+// ── COLOR SWITCHER ──
+const poolColorMap = {
+  'Piletas/Porto 430.png':      'Piletas/modelo 430 ARENA.png',
+  'Piletas/Porto 500.png':      'Piletas/porto 500 ARENA.png',
+  'Piletas/Porto 501.png':      'Piletas/porto 501 ARENA.png',
+  'Piletas/Porto 630.png':      'Piletas/porto 630 ARENA.png',
+  'Piletas/porto 700 nueva.png':'Piletas/porto 700 ARENA.png',
+  'Piletas/Porto 750.png':      'Piletas/porto 750 ARENA.png',
+};
+const poolColorMapReverse = Object.fromEntries(Object.entries(poolColorMap).map(([a,b])=>[b,a]));
+
+function setPoolColor(color) {
+  document.querySelectorAll('#modelos img').forEach(img => {
+    const src = img.getAttribute('src');
+    if (color === 'arena' && poolColorMap[src]) {
+      img.setAttribute('src', poolColorMap[src]);
+    } else if (color === 'azul' && poolColorMapReverse[src]) {
+      img.setAttribute('src', poolColorMapReverse[src]);
+    }
+  });
+  document.querySelectorAll('.color-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.color === color);
+  });
+}
 </script>
 
 </body>
