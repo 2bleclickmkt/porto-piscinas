@@ -21,9 +21,36 @@ body{font-family:'Nunito',sans-serif;background:var(--white);color:var(--text);o
 img{max-width:100%;display:block;}
 a{text-decoration:none;color:inherit;}
 
+/* ── ANNOUNCE BAR ── */
+.announce-bar{
+  position:fixed;top:0;left:0;right:0;z-index:101;
+  height:34px;overflow:hidden;
+  background:var(--water);
+  display:flex;align-items:center;
+  white-space:nowrap;
+}
+.announce-track{
+  display:inline-flex;align-items:center;
+  animation:announceScroll 22s linear infinite;
+  will-change:transform;
+}
+.announce-item{
+  display:inline-flex;align-items:center;
+  padding:0 28px;
+  font-size:12px;font-weight:800;letter-spacing:.4px;
+  color:white;white-space:nowrap;
+}
+@keyframes announceScroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+@media(max-width:560px){
+  .announce-item{font-size:11px;padding:0 18px;}
+}
+
 /* ── HEADER ── */
 .header{
-  position:fixed;top:0;left:0;right:0;z-index:100;
+  position:fixed;top:34px;left:0;right:0;z-index:100;
   background:rgba(255,255,255,0.98);backdrop-filter:blur(12px);
   display:flex;align-items:center;justify-content:space-between;
   padding:0 40px;height:84px;
@@ -582,7 +609,7 @@ a{text-decoration:none;color:inherit;}
 /* ── MOBILE NAV ── */
 .mobile-nav{
   display:none;
-  position:fixed;top:84px;left:0;right:0;z-index:99;
+  position:fixed;top:118px;left:0;right:0;z-index:99;
   background:white;
   border-bottom:1px solid rgba(0,0,0,0.08);
   box-shadow:0 8px 24px rgba(0,0,0,0.1);
@@ -658,7 +685,7 @@ a{text-decoration:none;color:inherit;}
   /* Header */
   .header{padding:0 16px;height:64px;}
   .header-logo img{height:48px;}
-  .mobile-nav{top:64px;}
+  .mobile-nav{top:98px;}
   /* Hero */
   .hero{height:auto;min-height:0;padding:100px 16px 64px;justify-content:flex-start;}
   .hero h1{font-size:clamp(28px,8vw,48px);}
@@ -724,6 +751,16 @@ a{text-decoration:none;color:inherit;}
 </style>
 </head>
 <body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  <div class="announce-track">
+    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
+    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
+    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
+    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
+  </div>
+</div>
 
 <!-- HEADER -->
 
