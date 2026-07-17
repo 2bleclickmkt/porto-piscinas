@@ -420,6 +420,8 @@ a{text-decoration:none;color:inherit;}
 .color-dot{width:13px;height:13px;border-radius:50%;display:inline-block;flex-shrink:0;}
 .azul-dot{background:#1A5FA8;}
 .arena-dot{background:#C8A96E;}
+.blanco-dot{background:#FFFFFF;border:1.5px solid #C9C9C9;}
+.color-btn.active.blanco-btn{background:#EDEDED;border-color:#BFBFBF;color:var(--navy);}
 
 /* ── PROCESO ── */
 .process{background:var(--navy);padding:100px 40px;position:relative;overflow:hidden;}
@@ -989,6 +991,9 @@ a{text-decoration:none;color:inherit;}
         </button>
         <button class="color-btn arena-btn" data-color="arena" onclick="setPoolColor('arena')">
           <span class="color-dot arena-dot"></span> Arena
+        </button>
+        <button class="color-btn blanco-btn" data-color="blanco" onclick="setPoolColor('blanco')">
+          <span class="color-dot blanco-dot"></span> Blanco
         </button>
       </div>
     </div>
@@ -1584,23 +1589,25 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
 });
 
 // ── COLOR SWITCHER ──
-const poolColorMap = {
-  'Piletas/Porto 430.png':      'Piletas/modelo 430 ARENA.png',
-  'Piletas/Porto 500.png':      'Piletas/porto 500 ARENA.png',
-  'Piletas/Porto 501.png':      'Piletas/porto 501 ARENA.png',
-  'Piletas/Porto 630.png':      'Piletas/porto 630 ARENA.png',
-  'Piletas/porto 700 nueva.png':'Piletas/porto 700 ARENA.png',
-  'Piletas/Porto 750.png':      'Piletas/porto 750 ARENA.png',
+const poolVariants = {
+  '430': { azul:'Piletas/Porto 430.png',       arena:'Piletas/modelo 430 ARENA.png', blanco:'Piletas/430 BLANCA.png' },
+  '500': { azul:'Piletas/Porto 500.png',       arena:'Piletas/porto 500 ARENA.png',  blanco:'Piletas/500 BLANCA.png' },
+  '501': { azul:'Piletas/Porto 501.png',       arena:'Piletas/porto 501 ARENA.png',  blanco:'Piletas/501 BLANCA.png' },
+  '630': { azul:'Piletas/Porto 630.png',       arena:'Piletas/porto 630 ARENA.png',  blanco:'Piletas/630 BLANCA.png' },
+  '700': { azul:'Piletas/porto 700 nueva.png', arena:'Piletas/porto 700 ARENA.png',  blanco:'Piletas/700 BLANCA.png' },
+  '750': { azul:'Piletas/Porto 750.png',       arena:'Piletas/porto 750 ARENA.png',  blanco:'Piletas/750 BLANCA.png' },
 };
-const poolColorMapReverse = Object.fromEntries(Object.entries(poolColorMap).map(([a,b])=>[b,a]));
+const srcToModel = {};
+Object.entries(poolVariants).forEach(([key, variants]) => {
+  Object.values(variants).forEach(src => { srcToModel[src] = key; });
+});
 
 function setPoolColor(color) {
   document.querySelectorAll('#modelos img').forEach(img => {
     const src = img.getAttribute('src');
-    if (color === 'arena' && poolColorMap[src]) {
-      img.setAttribute('src', poolColorMap[src]);
-    } else if (color === 'azul' && poolColorMapReverse[src]) {
-      img.setAttribute('src', poolColorMapReverse[src]);
+    const modelKey = srcToModel[src];
+    if (modelKey && poolVariants[modelKey][color]) {
+      img.setAttribute('src', poolVariants[modelKey][color]);
     }
   });
   document.querySelectorAll('.color-btn').forEach(b => {
