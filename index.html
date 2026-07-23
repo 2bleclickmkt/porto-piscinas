@@ -1733,7 +1733,8 @@ if (promoOverlay) {
 }
 
 // Distribución automática entre los dos números de WhatsApp
-const waNumbers = ['5493518786914', '5493512170986'];
+// Reparto ponderado: 25% / 25% / 50% (el nuevo número, del dueño, aparece duplicado para pesar el doble)
+const waNumbers = ['5493518786914', '5493512170986', '5493514037782', '5493514037782'];
 document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
