@@ -1743,6 +1743,9 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
     const text = textMatch ? textMatch[1] : '';
     const num = waNumbers[Math.floor(Math.random() * waNumbers.length)];
     window.open('https://wa.me/' + num + (text ? '?text=' + text : ''), '_blank');
+
+    // Trackeo simple de clics a WhatsApp (sin diferenciar origen)
+    fetch('https://script.google.com/macros/s/AKfycbxuK6fOZM3zY0auRshtbN81tnEOluzkgLHais853mZB21TvsL4mo2egC_CNvnz3jzeHdA/exec', { mode: 'no-cors' }).catch(()=>{});
   });
 });
 
