@@ -33,7 +33,7 @@ a{text-decoration:none;color:inherit;}
 .announce-bar{
   position:fixed;top:0;left:0;right:0;z-index:101;
   height:34px;overflow:hidden;
-  background:var(--water);
+  background:#FFF3E9;
   display:flex;align-items:center;
   white-space:nowrap;
 }
@@ -44,16 +44,20 @@ a{text-decoration:none;color:inherit;}
 }
 .announce-item{
   display:inline-flex;align-items:center;
-  padding:0 28px;
+  margin:0 5px;
+  padding:5px 20px;border-radius:100px;
   font-size:12px;font-weight:800;letter-spacing:.4px;
   color:white;white-space:nowrap;
 }
+.announce-item:nth-child(3n+1){background:#F33F0A;}
+.announce-item:nth-child(3n+2){background:#7A0E2E;}
+.announce-item:nth-child(3n){background:var(--water);}
 @keyframes announceScroll{
   from{transform:translateX(0);}
   to{transform:translateX(-50%);}
 }
 @media(max-width:560px){
-  .announce-item{font-size:11px;padding:0 18px;}
+  .announce-item{font-size:11px;padding:4px 14px;}
 }
 
 /* ── HEADER ── */
@@ -123,7 +127,26 @@ a{text-decoration:none;color:inherit;}
   border:1.5px solid rgba(255,255,255,0.18);
   animation:riseBubble var(--d,9s) ease-in infinite var(--dl,0s);
 }
-.hero>*:not(.hero-bg):not(.hero-animated-bubble){position:relative;z-index:2;}
+/* Flores cayendo — Primavera Sale */
+@keyframes fallFlower{
+  0%  {transform:translateY(-20vh) translateX(0) rotate(0deg);opacity:0;}
+  10% {opacity:.95;}
+  88% {opacity:.9;}
+  100%{transform:translateY(120vh) translateX(var(--drift,0px)) rotate(var(--rot,180deg));opacity:0;}
+}
+.hero-falling-flowers{
+  position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;
+}
+.flower-fall{
+  position:absolute;top:-20%;
+  animation:fallFlower var(--d,14s) linear infinite var(--dl,0s);
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+/* Flores cayendo — secciones de fondo claro */
+.flowers-bg{position:relative;overflow:hidden;}
+.flowers-fall-layer{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.flowers-fall-layer .flower-fall{filter:drop-shadow(0 3px 8px rgba(0,0,0,0.12));}
+.hero>*:not(.hero-bg):not(.hero-animated-bubble):not(.hero-falling-flowers){position:relative;z-index:2;}
 .hero-logo-big{
   width:clamp(150px,26vw,260px);margin-bottom:32px;
   border-radius:16px;background:rgba(255,255,255,0.93);
@@ -234,7 +257,7 @@ a{text-decoration:none;color:inherit;}
 
 /* ── NOSOTROS ── */
 .about{background:var(--beige);padding:100px 40px;}
-.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
 .about-text .section-desc{margin-top:20px;}
 .about-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px;}
 .about-feat{
@@ -333,7 +356,7 @@ a{text-decoration:none;color:inherit;}
 
 /* ── MODELOS ── */
 .models{background:var(--gray);padding:100px 40px;}
-.models-inner{max-width:1200px;margin:0 auto;}
+.models-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;}
 .models-header{text-align:center;margin-bottom:48px;}
 .models-header .section-desc{margin:14px auto 0;}
 .models-tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;justify-content:center;}
@@ -366,7 +389,7 @@ a{text-decoration:none;color:inherit;}
 .model-slides{position:absolute;inset:0;}
 .model-slide{display:none;position:absolute;inset:0;}
 .model-slide.active{display:block;}
-.model-slide img{width:100%;height:100%;object-fit:contain;display:block;padding:16px;background:white;}
+.model-slide > img{width:100%;height:100%;object-fit:contain;display:block;padding:16px;background:white;}
 .model-slide-svg{width:100%;height:100%;}
 .model-nav-btn{
   position:absolute;top:50%;transform:translateY(-50%);
@@ -386,6 +409,17 @@ a{text-decoration:none;color:inherit;}
   border-radius:100px;padding:5px 14px;
   font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;z-index:3;
 }
+.model-badge-sale-off{
+  position:absolute;top:16px;right:16px;z-index:3;
+  background:linear-gradient(135deg,#E63946,#FF6B6B);color:white;
+  border-radius:50%;width:64px;height:64px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-weight:900;line-height:1.1;box-shadow:0 6px 18px rgba(230,57,70,0.45);
+  border:3px solid white;transform:rotate(-10deg);
+}
+.model-badge-sale-off .pct{font-size:17px;}
+.model-badge-sale-off .off{font-size:8px;letter-spacing:1px;text-transform:uppercase;}
+.model-slide .flowers-fall-layer{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;}
 /* Panel derecho */
 .model-showcase-info{
   border-left:1px solid rgba(0,0,0,0.07);
@@ -568,7 +602,7 @@ a{text-decoration:none;color:inherit;}
 }
 
 .location{background:white;padding:100px 40px;}
-.location-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.location-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
 .location-info .section-desc{margin:14px 0 36px;}
 .location-detail{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;}
 .location-detail svg{width:20px;height:20px;flex-shrink:0;stroke:var(--water);margin-top:2px;}
@@ -769,7 +803,7 @@ a{text-decoration:none;color:inherit;}
 .promo-overlay.open{opacity:1;pointer-events:auto;}
 .promo-card{
   position:relative;
-  background:var(--white);
+  background:linear-gradient(160deg,#FFFFFF 0%,#FFCFE2 130%);
   border-radius:28px;
   max-width:460px;width:100%;
   padding:44px 32px 32px;
@@ -777,7 +811,10 @@ a{text-decoration:none;color:inherit;}
   box-shadow:0 30px 90px rgba(0,0,0,0.4);
   transform:scale(0.92);transition:transform .3s ease;
   max-height:90vh;overflow-y:auto;
+  overflow-x:hidden;
 }
+.promo-card-flower{position:absolute;pointer-events:none;z-index:0;opacity:0.95;}
+.promo-card > *:not(.promo-card-flower){position:relative;z-index:1;}
 .promo-overlay.open .promo-card{transform:scale(1);}
 .promo-close{
   position:absolute;top:16px;right:16px;
@@ -794,30 +831,32 @@ a{text-decoration:none;color:inherit;}
   font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
   margin-bottom:16px;
 }
+.promo-badge-sale{background:#F33F0A;color:white;box-shadow:0 6px 16px rgba(243,63,10,0.4);}
 .promo-title{
-  font-size:22px;font-weight:800;color:var(--navy);
+  font-size:23px;font-weight:800;color:#7A0E2E;
   line-height:1.35;letter-spacing:-0.2px;margin-bottom:14px;
   text-transform:uppercase;
 }
+.promo-title .promo-title-off{color:#F33F0A;}
 .promo-sub{
   font-size:14px;font-weight:400;color:#555;line-height:1.7;margin-bottom:22px;
 }
-.promo-sub strong{color:var(--navy);font-weight:800;}
+.promo-sub strong{color:#7A0E2E;font-weight:800;}
 .promo-color-label{
   font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--water);margin-bottom:14px;
+  color:#7A0E2E;margin-bottom:14px;
 }
 .promo-colors{
   display:flex;gap:10px;justify-content:center;margin-bottom:24px;
 }
 .promo-color-item{
   flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;
-  border:2px solid var(--beige3);border-radius:16px;padding:10px 4px 12px;
-  transition:border-color .2s,transform .2s;cursor:pointer;
+  border:2px solid #CDD98D;background:rgba(255,255,255,0.75);border-radius:16px;padding:10px 4px 12px;
+  transition:border-color .2s,transform .2s,background .2s;cursor:pointer;
 }
-.promo-color-item:hover{border-color:var(--water);transform:translateY(-3px);}
+.promo-color-item:hover{border-color:#F33F0A;background:white;transform:translateY(-3px);}
 .promo-color-item img{width:100%;height:60px;object-fit:contain;}
-.promo-color-item span{font-size:11px;font-weight:800;color:var(--navy);}
+.promo-color-item span{font-size:11px;font-weight:800;color:#7A0E2E;}
 .promo-cta{
   display:flex;align-items:center;justify-content:center;gap:10px;
   background:#25D366;color:white;border-radius:100px;
@@ -839,26 +878,26 @@ a{text-decoration:none;color:inherit;}
 <!-- PROMO POPUP -->
 <div class="promo-overlay" id="promoOverlay">
   <div class="promo-card">
+    <img class="promo-card-flower" src="Flores/flor-15.png" style="width:56px;top:-16px;left:-18px;transform:rotate(-12deg);">
+    <img class="promo-card-flower" src="Flores/flor-08.png" style="width:34px;top:64px;right:-10px;transform:rotate(8deg);">
+    <img class="promo-card-flower" src="Flores/flor-20.png" style="width:44px;bottom:-14px;left:-14px;transform:rotate(15deg);">
+    <img class="promo-card-flower" src="Flores/flor-17.png" style="width:38px;bottom:110px;right:-16px;transform:rotate(-8deg);">
     <button class="promo-close" onclick="closePromo()" aria-label="Cerrar">✕</button>
-    <div class="promo-badge">Envío prioritario</div>
-    <h2 class="promo-title">Si sos de Córdoba</h2>
-    <p class="promo-sub">Solo por esta semana tenemos promoción y envío prioritario de nuestro modelo estrella: <strong>Porto 700</strong>.</p>
-    <p class="promo-color-label">Elegí el color que más te guste</p>
+    <div class="promo-badge promo-badge-sale">Primavera Sale</div>
+    <h2 class="promo-title"><span class="promo-title-off">25% OFF</span> en Porto 700 y Porto 630</h2>
+    <p class="promo-sub">Este septiembre, la fábrica te deja estos dos modelos al mejor precio del año, en <strong>blanco y arena</strong>.</p>
+    <p class="promo-color-label">Elegí el modelo que mejor se adapte</p>
     <div class="promo-colors">
-      <a href="https://wa.me/5493518786914?text=Hola!%20Soy%20de%20C%C3%B3rdoba%2C%20vengo%20de%20la%20promoci%C3%B3n%20de%20la%20Porto%20700%2C%20quisiera%20consultar." class="promo-color-item" target="_blank">
-        <img src="Piletas/porto 700 nueva.png" alt="Porto 700 Azul"/>
-        <span>Azul</span>
+      <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20la%20Porto%20700%20(25%25%20OFF)." class="promo-color-item" target="_blank">
+        <img src="Piletas/700 BLANCA.png" alt="Porto 700"/>
+        <span>Porto 700</span>
       </a>
-      <a href="https://wa.me/5493518786914?text=Hola!%20Soy%20de%20C%C3%B3rdoba%2C%20vengo%20de%20la%20promoci%C3%B3n%20de%20la%20Porto%20700%2C%20quisiera%20consultar." class="promo-color-item" target="_blank">
-        <img src="Piletas/porto 700 ARENA.png" alt="Porto 700 Arena"/>
-        <span>Arena</span>
-      </a>
-      <a href="https://wa.me/5493518786914?text=Hola!%20Soy%20de%20C%C3%B3rdoba%2C%20vengo%20de%20la%20promoci%C3%B3n%20de%20la%20Porto%20700%2C%20quisiera%20consultar." class="promo-color-item" target="_blank">
-        <img src="Piletas/700 BLANCA.png" alt="Porto 700 Blanco"/>
-        <span>Blanco</span>
+      <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20la%20Porto%20630%20(25%25%20OFF)." class="promo-color-item" target="_blank">
+        <img src="Piletas/630 BLANCA.png" alt="Porto 630"/>
+        <span>Porto 630</span>
       </a>
     </div>
-    <a href="https://wa.me/5493518786914?text=Hola!%20Soy%20de%20C%C3%B3rdoba%2C%20vengo%20de%20la%20promoci%C3%B3n%20de%20la%20Porto%20700%2C%20quisiera%20consultar." class="promo-cta" target="_blank">
+    <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar." class="promo-cta" target="_blank">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Consultar por WhatsApp
     </a>
@@ -868,10 +907,12 @@ a{text-decoration:none;color:inherit;}
 <!-- ANNOUNCE BAR -->
 <div class="announce-bar">
   <div class="announce-track">
-    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
-    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
-    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
-    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
+    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
+    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
+    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
+    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
+    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
+    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
   </div>
 </div>
 
@@ -926,6 +967,20 @@ a{text-decoration:none;color:inherit;}
     <div class="bubble" style="width:14px;height:14px;bottom:-16px;left:84%;--d:6.5s;--dl:-4s;--drift:12px;"></div>
     <div class="bubble" style="width:40px;height:40px;bottom:-45px;left:90%;--d:12s;--dl:-10s;--drift:-30px;"></div>
     <div class="bubble" style="width:20px;height:20px;bottom:-22px;left:4%;--d:8.5s;--dl:-6s;--drift:18px;"></div>
+  </div>
+
+  <div class="hero-falling-flowers">
+    <img class="flower-fall" src="Flores/flor-08.png" style="width:34px;left:6%;--d:13s;--dl:-3s;--drift:30px;--rot:160deg;">
+    <img class="flower-fall" src="Flores/flor-13.png" style="width:26px;left:15%;--d:10s;--dl:-7s;--drift:-25px;--rot:-140deg;">
+    <img class="flower-fall" src="Flores/flor-20.png" style="width:46px;left:24%;--d:16s;--dl:-1s;--drift:20px;--rot:200deg;">
+    <img class="flower-fall" src="Flores/flor-05.png" style="width:24px;left:34%;--d:9s;--dl:-5s;--drift:-18px;--rot:-120deg;">
+    <img class="flower-fall" src="Flores/flor-07.png" style="width:38px;left:44%;--d:14s;--dl:-9s;--drift:22px;--rot:150deg;">
+    <img class="flower-fall" src="Flores/flor-17.png" style="width:30px;left:53%;--d:11s;--dl:-2s;--drift:-28px;--rot:-180deg;">
+    <img class="flower-fall" src="Flores/flor-04.png" style="width:36px;left:62%;--d:15s;--dl:-10s;--drift:24px;--rot:170deg;">
+    <img class="flower-fall" src="Flores/flor-15.png" style="width:28px;left:71%;--d:12s;--dl:-4s;--drift:-20px;--rot:-160deg;">
+    <img class="flower-fall" src="Flores/flor-08.png" style="width:22px;left:80%;--d:10.5s;--dl:-8s;--drift:16px;--rot:140deg;">
+    <img class="flower-fall" src="Flores/flor-20.png" style="width:40px;left:89%;--d:17s;--dl:-6s;--drift:-22px;--rot:-190deg;">
+    <img class="flower-fall" src="Flores/flor-13.png" style="width:20px;left:95%;--d:9.5s;--dl:-2.5s;--drift:14px;--rot:130deg;">
   </div>
 
   <div class="hero-badge">
@@ -1025,7 +1080,7 @@ a{text-decoration:none;color:inherit;}
 </section>
 
 <!-- NOSOTROS -->
-<section id="nosotros" class="about">
+<section id="nosotros" class="about flowers-bg">
   <div class="about-inner">
     <div class="about-text reveal-left">
       <p class="section-eyebrow">Quiénes somos</p>
@@ -1124,7 +1179,7 @@ a{text-decoration:none;color:inherit;}
 </section>
 
 <!-- MODELOS -->
-<section id="modelos" class="models">
+<section id="modelos" class="models flowers-bg">
   <div class="models-inner">
     <div class="models-header reveal">
       <p class="section-eyebrow">Nuestros modelos</p>
@@ -1175,8 +1230,9 @@ a{text-decoration:none;color:inherit;}
             <div class="model-slide" data-name="Porto 500">
               <img src="Piletas/Porto 500.png" alt="Porto 500"/>
             </div>
-            <div class="model-slide" data-name="Porto 630">
+            <div class="model-slide flowers-bg" data-name="Porto 630">
               <img src="Piletas/Porto 630.png" alt="Porto 630"/>
+              <span class="model-badge-sale-off"><span class="pct">25%</span><span class="off">OFF</span></span>
             </div>
             <div class="model-slide" data-name="Porto 750">
               <img src="Piletas/Porto 750.png" alt="Porto 750"/>
@@ -1291,9 +1347,10 @@ a{text-decoration:none;color:inherit;}
             <div class="model-slide active" data-name="Porto 501">
               <img src="Piletas/Porto 501.png" alt="Porto 501 Solarium"/>
             </div>
-            <div class="model-slide" data-name="Porto 700">
+            <div class="model-slide flowers-bg" data-name="Porto 700">
               <span class="model-badge-float">Más vendida</span>
               <img src="Piletas/porto 700 nueva.png" alt="Porto 700 Solarium"/>
+              <span class="model-badge-sale-off"><span class="pct">25%</span><span class="off">OFF</span></span>
             </div>
           </div>
           <button class="model-nav-btn next" onclick="navigateModel('solarium',1)" aria-label="Siguiente">
@@ -1543,7 +1600,7 @@ a{text-decoration:none;color:inherit;}
 </section>
 
 <!-- UBICACIÓN -->
-<section id="contacto" class="location">
+<section id="contacto" class="location flowers-bg">
   <div class="location-inner">
     <div class="location-info reveal-left">
       <p class="section-eyebrow">Dónde encontrarnos</p>
@@ -1783,6 +1840,50 @@ function setPoolColor(color) {
     b.classList.toggle('active', b.dataset.color === color);
   });
 }
+</script>
+
+<script>
+(function(){
+  const flowerImgs = [
+    'Flores/flor-01.png','Flores/flor-04.png','Flores/flor-05.png','Flores/flor-07.png',
+    'Flores/flor-08.png','Flores/flor-13.png','Flores/flor-15.png','Flores/flor-17.png',
+    'Flores/flor-19.png','Flores/flor-20.png'
+  ];
+  function buildFlowerLayer(count, opts){
+    opts = opts || {};
+    const minSize = opts.minSize || 18, maxSize = opts.maxSize || 26;
+    const layer = document.createElement('div');
+    layer.className = 'flowers-fall-layer';
+    for (let i = 0; i < count; i++){
+      const img = document.createElement('img');
+      img.className = 'flower-fall';
+      img.src = flowerImgs[Math.floor(Math.random() * flowerImgs.length)];
+      const size = minSize + Math.random() * (maxSize - minSize);
+      const left = opts.corners
+        ? (Math.random() > 0.5 ? Math.random() * 16 : 84 + Math.random() * 16)
+        : 2 + Math.random() * 94;
+      const duration = 9 + Math.random() * 8;
+      const delay = -(Math.random() * duration);
+      const drift = Math.random() * 50 - 25;
+      const rot = (Math.random() > 0.5 ? 1 : -1) * (120 + Math.random() * 80);
+      img.style.width = size + 'px';
+      img.style.left = left + '%';
+      img.style.setProperty('--d', duration + 's');
+      img.style.setProperty('--dl', delay + 's');
+      img.style.setProperty('--drift', drift + 'px');
+      img.style.setProperty('--rot', rot + 'deg');
+      layer.appendChild(img);
+    }
+    return layer;
+  }
+  document.querySelectorAll('.flowers-bg').forEach(section => {
+    if (section.classList.contains('model-slide')){
+      section.appendChild(buildFlowerLayer(4, {minSize:14, maxSize:22, corners:true}));
+    } else {
+      section.insertBefore(buildFlowerLayer(9), section.firstChild);
+    }
+  });
+})();
 </script>
 
 </body>
