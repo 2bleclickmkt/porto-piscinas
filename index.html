@@ -420,6 +420,15 @@ a{text-decoration:none;color:inherit;}
 .model-badge-sale-off .pct{font-size:17px;}
 .model-badge-sale-off .off{font-size:8px;letter-spacing:1px;text-transform:uppercase;}
 .model-slide .flowers-fall-layer{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;}
+/* Estallido de flores al clickear WhatsApp */
+@keyframes flowerBurst{
+  0%{transform:translate(-50%,-50%) scale(0.2) rotate(0deg);opacity:1;}
+  100%{transform:translate(calc(-50% + var(--bx)),calc(-50% + var(--by))) scale(1) rotate(var(--br));opacity:0;}
+}
+.flower-burst{
+  position:fixed;z-index:9999;pointer-events:none;
+  animation:flowerBurst .8s cubic-bezier(.2,.7,.3,1) forwards;
+}
 /* Panel derecho */
 .model-showcase-info{
   border-left:1px solid rgba(0,0,0,0.07);
@@ -1882,6 +1891,36 @@ function setPoolColor(color) {
     } else {
       section.insertBefore(buildFlowerLayer(9), section.firstChild);
     }
+  });
+
+  function burstFlowers(x, y){
+    const count = 10;
+    for (let i = 0; i < count; i++){
+      const img = document.createElement('img');
+      img.className = 'flower-burst';
+      img.src = flowerImgs[Math.floor(Math.random() * flowerImgs.length)];
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 60 + Math.random() * 90;
+      const bx = Math.cos(angle) * distance;
+      const by = Math.sin(angle) * distance;
+      const size = 16 + Math.random() * 20;
+      const rot = (Math.random() > 0.5 ? 1 : -1) * (180 + Math.random() * 180);
+      img.style.left = x + 'px';
+      img.style.top = y + 'px';
+      img.style.width = size + 'px';
+      img.style.setProperty('--bx', bx + 'px');
+      img.style.setProperty('--by', by + 'px');
+      img.style.setProperty('--br', rot + 'deg');
+      document.body.appendChild(img);
+      img.addEventListener('animationend', () => img.remove());
+    }
+  }
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="https://wa.me/"]');
+    if (!link) return;
+    e.preventDefault();
+    burstFlowers(e.clientX, e.clientY);
+    setTimeout(() => window.open(link.href, '_blank'), 450);
   });
 })();
 </script>
