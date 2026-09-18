@@ -255,6 +255,45 @@ a{text-decoration:none;color:inherit;}
 .section-title{font-size:clamp(26px,4vw,46px);font-weight:900;color:var(--navy);line-height:1.1;letter-spacing:-1px;}
 .section-desc{font-size:16px;font-weight:400;color:#666;line-height:1.85;max-width:540px;}
 
+/* ── OFERTAS DEL MES ── */
+.ofertas{background:white;padding:90px 40px 100px;overflow:hidden;}
+.ofertas-inner{max-width:1200px;margin:0 auto;}
+.ofertas-header{text-align:center;margin-bottom:44px;}
+.ofertas-header .section-title,.ofertas-header .section-desc{margin-left:auto;margin-right:auto;}
+.ofertas-header .section-desc{margin-top:14px;}
+.ofertas-track{
+  display:flex;gap:26px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:6px 6px 26px;
+  scrollbar-width:none;
+}
+.ofertas-track::-webkit-scrollbar{display:none;}
+.oferta-card{
+  display:block;
+  flex:0 0 auto;
+  width:300px;
+  scroll-snap-align:start;
+  border-radius:22px;overflow:hidden;
+  box-shadow:0 10px 40px rgba(26,53,102,0.14);
+  border:1px solid var(--beige3);
+  transition:transform .25s;
+}
+.oferta-card:hover{transform:translateY(-6px);}
+.oferta-card img{width:100%;display:block;aspect-ratio:1081/1350;object-fit:cover;}
+.ofertas-nav{display:flex;justify-content:center;gap:14px;margin-top:8px;}
+.ofertas-nav-btn{
+  width:46px;height:46px;border-radius:50%;
+  background:white;border:2px solid var(--beige3);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;color:var(--navy);
+}
+.ofertas-nav-btn:hover{background:var(--navy);border-color:var(--navy);color:white;}
+.ofertas-nav-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5;}
+@media(max-width:640px){
+  .oferta-card{width:230px;}
+  .ofertas{padding:60px 20px 70px;}
+}
+
 /* ── NOSOTROS ── */
 .about{background:var(--beige);padding:100px 40px;}
 .about-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
@@ -1052,6 +1091,41 @@ a{text-decoration:none;color:inherit;}
     </div>
   </div>
 </div>
+
+<!-- OFERTAS DEL MES -->
+<section id="ofertas" class="ofertas">
+  <div class="ofertas-inner">
+    <div class="ofertas-header reveal">
+      <p class="section-eyebrow">Primavera Sale</p>
+      <h2 class="section-title">Ofertas del mes</h2>
+      <p class="section-desc">Piletas y productos para el mantenimiento, con precio especial por tiempo limitado.</p>
+    </div>
+    <div class="ofertas-carousel">
+      <div class="ofertas-track" id="ofertasTrack">
+        <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20la%20Porto%20700%20(25%25%20OFF)." class="oferta-card" target="_blank">
+          <img src="Ofertas/porto-700-oferta.jpg" alt="Porto 700 — 25% OFF">
+        </a>
+        <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20la%20Porto%20630%20(25%25%20OFF)." class="oferta-card" target="_blank">
+          <img src="Ofertas/porto-630-oferta.jpg" alt="Porto 630 — 25% OFF">
+        </a>
+        <a href="https://wa.me/5493513786233?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20el%20Kit%20de%20mantenimiento%20(%2420.000)." class="oferta-card" target="_blank">
+          <img src="Ofertas/kit-mantenimiento.jpg" alt="Kit de mantenimiento — $20.000">
+        </a>
+        <a href="https://wa.me/5493513786233?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20las%20Pastillas%20Triple%20Acci%C3%B3n%20(2x%20%2414.000)." class="oferta-card" target="_blank">
+          <img src="Ofertas/pastillas-triple-accion.jpg" alt="Pastillas Triple Acción — 2x $14.000">
+        </a>
+      </div>
+      <div class="ofertas-nav">
+        <button class="ofertas-nav-btn" onclick="document.getElementById('ofertasTrack').scrollBy({left:-320,behavior:'smooth'})" aria-label="Anterior">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="ofertas-nav-btn" onclick="document.getElementById('ofertasTrack').scrollBy({left:320,behavior:'smooth'})" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- STATS -->
 <section class="stats">
