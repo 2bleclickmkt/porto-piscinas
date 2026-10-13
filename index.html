@@ -1880,16 +1880,20 @@ if (promoOverlay) {
   });
 }
 
-// Distribución automática entre los dos números de WhatsApp
-// Reparto 50/50 entre los dos números originales (se sacó el de Carlos)
-const waNumbers = ['5493518786914', '5493512170986'];
+// Distribución automática entre los números de WhatsApp de ventas (piletas)
+// Reparto parejo entre los tres números (se sacó el de Carlos, se sumó la nueva vendedora)
+const waNumbers = ['5493518786914', '5493512170986', '5493513554260'];
+// Número fijo de productos/local: no entra en el reparto, siempre va a este número
+const productNumber = '5493513786233';
 document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     const href = link.getAttribute('href');
     const textMatch = href.match(/\?text=(.+)$/);
     const text = textMatch ? textMatch[1] : '';
-    const num = waNumbers[Math.floor(Math.random() * waNumbers.length)];
+    const numMatch = href.match(/wa\.me\/(\d+)/);
+    const originalNum = numMatch ? numMatch[1] : '';
+    const num = originalNum === productNumber ? productNumber : waNumbers[Math.floor(Math.random() * waNumbers.length)];
     window.open('https://wa.me/' + num + (text ? '?text=' + text : ''), '_blank');
 
     // Trackeo de clics a WhatsApp (Google Analytics 4)
