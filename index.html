@@ -33,7 +33,7 @@ a{text-decoration:none;color:inherit;}
 .announce-bar{
   position:fixed;top:0;left:0;right:0;z-index:101;
   height:34px;overflow:hidden;
-  background:#FFF3E9;
+  background:var(--water);
   display:flex;align-items:center;
   white-space:nowrap;
 }
@@ -44,20 +44,16 @@ a{text-decoration:none;color:inherit;}
 }
 .announce-item{
   display:inline-flex;align-items:center;
-  margin:0 5px;
-  padding:5px 20px;border-radius:100px;
+  padding:0 28px;
   font-size:12px;font-weight:800;letter-spacing:.4px;
   color:white;white-space:nowrap;
 }
-.announce-item:nth-child(3n+1){background:#F33F0A;}
-.announce-item:nth-child(3n+2){background:#7A0E2E;}
-.announce-item:nth-child(3n){background:var(--water);}
 @keyframes announceScroll{
   from{transform:translateX(0);}
   to{transform:translateX(-50%);}
 }
 @media(max-width:560px){
-  .announce-item{font-size:11px;padding:4px 14px;}
+  .announce-item{font-size:11px;padding:0 18px;}
 }
 
 /* ── HEADER ── */
@@ -127,26 +123,7 @@ a{text-decoration:none;color:inherit;}
   border:1.5px solid rgba(255,255,255,0.18);
   animation:riseBubble var(--d,9s) ease-in infinite var(--dl,0s);
 }
-/* Flores cayendo — Primavera Sale */
-@keyframes fallFlower{
-  0%  {transform:translateY(-20vh) translateX(0) rotate(0deg);opacity:0;}
-  10% {opacity:.95;}
-  88% {opacity:.9;}
-  100%{transform:translateY(120vh) translateX(var(--drift,0px)) rotate(var(--rot,180deg));opacity:0;}
-}
-.hero-falling-flowers{
-  position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;
-}
-.flower-fall{
-  position:absolute;top:-20%;
-  animation:fallFlower var(--d,14s) linear infinite var(--dl,0s);
-  filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-}
-/* Flores cayendo — secciones de fondo claro */
-.flowers-bg{position:relative;overflow:hidden;}
-.flowers-fall-layer{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-.flowers-fall-layer .flower-fall{filter:drop-shadow(0 3px 8px rgba(0,0,0,0.12));}
-.hero>*:not(.hero-bg):not(.hero-animated-bubble):not(.hero-falling-flowers){position:relative;z-index:2;}
+.hero>*:not(.hero-bg):not(.hero-animated-bubble){position:relative;z-index:2;}
 .hero-logo-big{
   width:clamp(150px,26vw,260px);margin-bottom:32px;
   border-radius:16px;background:rgba(255,255,255,0.93);
@@ -255,44 +232,6 @@ a{text-decoration:none;color:inherit;}
 .section-title{font-size:clamp(26px,4vw,46px);font-weight:900;color:var(--navy);line-height:1.1;letter-spacing:-1px;}
 .section-desc{font-size:16px;font-weight:400;color:#666;line-height:1.85;max-width:540px;}
 
-/* ── OFERTAS DEL MES ── */
-.ofertas{background:white;padding:90px 40px 100px;overflow:hidden;}
-.ofertas-inner{max-width:1200px;margin:0 auto;}
-.ofertas-header{text-align:center;margin-bottom:44px;}
-.ofertas-header .section-title,.ofertas-header .section-desc{margin-left:auto;margin-right:auto;}
-.ofertas-header .section-desc{margin-top:14px;}
-.ofertas-track{
-  display:flex;gap:26px;
-  overflow-x:auto;scroll-snap-type:x mandatory;
-  padding:6px 6px 26px;
-  scrollbar-width:none;
-}
-.ofertas-track::-webkit-scrollbar{display:none;}
-.oferta-card{
-  display:block;
-  flex:0 0 auto;
-  width:300px;
-  scroll-snap-align:start;
-  border-radius:22px;overflow:hidden;
-  box-shadow:0 10px 40px rgba(26,53,102,0.14);
-  border:1px solid var(--beige3);
-  transition:transform .25s;
-}
-.oferta-card:hover{transform:translateY(-6px);}
-.oferta-card img{width:100%;display:block;aspect-ratio:1081/1350;object-fit:cover;}
-.ofertas-nav{display:flex;justify-content:center;gap:14px;margin-top:8px;}
-.ofertas-nav-btn{
-  width:46px;height:46px;border-radius:50%;
-  background:white;border:2px solid var(--beige3);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;color:var(--navy);
-}
-.ofertas-nav-btn:hover{background:var(--navy);border-color:var(--navy);color:white;}
-.ofertas-nav-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5;}
-@media(max-width:640px){
-  .oferta-card{width:230px;}
-  .ofertas{padding:60px 20px 70px;}
-}
 
 /* ── NOSOTROS ── */
 .about{background:var(--beige);padding:100px 40px;}
@@ -447,26 +386,6 @@ a{text-decoration:none;color:inherit;}
   background:linear-gradient(90deg,#C8941A,#E8B820);color:white;
   border-radius:100px;padding:5px 14px;
   font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;z-index:3;
-}
-.model-badge-sale-off{
-  position:absolute;top:16px;right:16px;z-index:3;
-  background:linear-gradient(135deg,#E63946,#FF6B6B);color:white;
-  border-radius:50%;width:64px;height:64px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  font-weight:900;line-height:1.1;box-shadow:0 6px 18px rgba(230,57,70,0.45);
-  border:3px solid white;transform:rotate(-10deg);
-}
-.model-badge-sale-off .pct{font-size:17px;}
-.model-badge-sale-off .off{font-size:8px;letter-spacing:1px;text-transform:uppercase;}
-.model-slide .flowers-fall-layer{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;}
-/* Estallido de flores al clickear WhatsApp */
-@keyframes flowerBurst{
-  0%{transform:translate(-50%,-50%) scale(0.2) rotate(0deg);opacity:1;}
-  100%{transform:translate(calc(-50% + var(--bx)),calc(-50% + var(--by))) scale(1) rotate(var(--br));opacity:0;}
-}
-.flower-burst{
-  position:fixed;z-index:9999;pointer-events:none;
-  animation:flowerBurst .8s cubic-bezier(.2,.7,.3,1) forwards;
 }
 /* Panel derecho */
 .model-showcase-info{
@@ -839,128 +758,17 @@ a{text-decoration:none;color:inherit;}
   .section-desc{font-size:14px;}
 }
 
-/* ── PROMO POPUP ── */
-.promo-overlay{
-  position:fixed;inset:0;z-index:300;
-  background:rgba(6,20,40,0.72);backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;
-  padding:24px;
-  opacity:0;pointer-events:none;
-  transition:opacity .3s ease;
-}
-.promo-overlay.open{opacity:1;pointer-events:auto;}
-.promo-card{
-  position:relative;
-  background:linear-gradient(160deg,#FFFFFF 0%,#FFCFE2 130%);
-  border-radius:28px;
-  max-width:460px;width:100%;
-  padding:44px 32px 32px;
-  text-align:center;
-  box-shadow:0 30px 90px rgba(0,0,0,0.4);
-  transform:scale(0.92);transition:transform .3s ease;
-  max-height:90vh;overflow-y:auto;
-  overflow-x:hidden;
-}
-.promo-card-flower{position:absolute;pointer-events:none;z-index:0;opacity:0.95;}
-.promo-card > *:not(.promo-card-flower){position:relative;z-index:1;}
-.promo-overlay.open .promo-card{transform:scale(1);}
-.promo-close{
-  position:absolute;top:16px;right:16px;
-  width:36px;height:36px;border-radius:50%;
-  border:none;background:var(--gray);color:var(--navy);
-  font-size:16px;font-weight:800;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s;z-index:2;
-}
-.promo-close:hover{background:var(--beige3);}
-.promo-badge{
-  display:inline-block;background:var(--water2);color:var(--navy);
-  border-radius:100px;padding:6px 18px;
-  font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
-  margin-bottom:16px;
-}
-.promo-badge-sale{background:#F33F0A;color:white;box-shadow:0 6px 16px rgba(243,63,10,0.4);}
-.promo-title{
-  font-size:23px;font-weight:800;color:#7A0E2E;
-  line-height:1.35;letter-spacing:-0.2px;margin-bottom:14px;
-  text-transform:uppercase;
-}
-.promo-title .promo-title-off{color:#F33F0A;}
-.promo-sub{
-  font-size:14px;font-weight:400;color:#555;line-height:1.7;margin-bottom:22px;
-}
-.promo-sub strong{color:#7A0E2E;font-weight:800;}
-.promo-color-label{
-  font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
-  color:#7A0E2E;margin-bottom:14px;
-}
-.promo-colors{
-  display:flex;gap:10px;justify-content:center;margin-bottom:24px;
-}
-.promo-color-item{
-  flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;
-  border:2px solid #CDD98D;background:rgba(255,255,255,0.75);border-radius:16px;padding:10px 4px 12px;
-  transition:border-color .2s,transform .2s,background .2s;cursor:pointer;
-}
-.promo-color-item:hover{border-color:#F33F0A;background:white;transform:translateY(-3px);}
-.promo-color-item img{width:100%;height:60px;object-fit:contain;}
-.promo-color-item span{font-size:11px;font-weight:800;color:#7A0E2E;}
-.promo-cta{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  background:#25D366;color:white;border-radius:100px;
-  padding:16px;font-size:14px;font-weight:800;
-  transition:opacity .2s;
-}
-.promo-cta:hover{opacity:.85;}
-.promo-cta svg{width:18px;height:18px;flex-shrink:0;}
-
-@media(max-width:560px){
-  .promo-card{padding:36px 20px 24px;}
-  .promo-title{font-size:18px;}
-  .promo-color-item img{height:48px;}
-}
 </style>
 </head>
 <body>
 
-<!-- PROMO POPUP -->
-<div class="promo-overlay" id="promoOverlay">
-  <div class="promo-card">
-    <img class="promo-card-flower" src="Flores/flor-15.png" style="width:56px;top:-16px;left:-18px;transform:rotate(-12deg);">
-    <img class="promo-card-flower" src="Flores/flor-08.png" style="width:34px;top:64px;right:-10px;transform:rotate(8deg);">
-    <img class="promo-card-flower" src="Flores/flor-20.png" style="width:44px;bottom:-14px;left:-14px;transform:rotate(15deg);">
-    <img class="promo-card-flower" src="Flores/flor-17.png" style="width:38px;bottom:110px;right:-16px;transform:rotate(-8deg);">
-    <button class="promo-close" onclick="closePromo()" aria-label="Cerrar">✕</button>
-    <div class="promo-badge promo-badge-sale">Primavera Sale</div>
-    <h2 class="promo-title"><span class="promo-title-off">25% OFF</span> en Porto 700 y Porto 630</h2>
-    <p class="promo-sub">Este septiembre, la fábrica te deja estos dos modelos al mejor precio del año, en <strong>blanco y arena</strong>.</p>
-    <p class="promo-color-label">Elegí el modelo que mejor se adapte</p>
-    <div class="promo-colors">
-      <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20la%20Porto%20700%20(25%25%20OFF)." class="promo-color-item" target="_blank">
-        <img src="Piletas/700 BLANCA.png" alt="Porto 700"/>
-        <span>Porto 700</span>
-      </a>
-      <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20la%20Porto%20630%20(25%25%20OFF)." class="promo-color-item" target="_blank">
-        <img src="Piletas/630 BLANCA.png" alt="Porto 630"/>
-        <span>Porto 630</span>
-      </a>
-    </div>
-    <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar." class="promo-cta" target="_blank">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Consultar por WhatsApp
-    </a>
-  </div>
-</div>
-
 <!-- ANNOUNCE BAR -->
 <div class="announce-bar">
   <div class="announce-track">
-    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
-    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
-    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
-    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
-    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
-    <span class="announce-item">Primavera Sale: 25% OFF en Porto 700 y Porto 630 · Blanco y Arena — ¡Este septiembre, al mejor precio del año!</span>
+    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
+    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
+    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
+    <span class="announce-item">Nuevos colores disponibles a elección: Azul · Arena · Blanco — ¡Elegí el que más te guste!</span>
   </div>
 </div>
 
@@ -1015,20 +823,6 @@ a{text-decoration:none;color:inherit;}
     <div class="bubble" style="width:14px;height:14px;bottom:-16px;left:84%;--d:6.5s;--dl:-4s;--drift:12px;"></div>
     <div class="bubble" style="width:40px;height:40px;bottom:-45px;left:90%;--d:12s;--dl:-10s;--drift:-30px;"></div>
     <div class="bubble" style="width:20px;height:20px;bottom:-22px;left:4%;--d:8.5s;--dl:-6s;--drift:18px;"></div>
-  </div>
-
-  <div class="hero-falling-flowers">
-    <img class="flower-fall" src="Flores/flor-08.png" style="width:34px;left:6%;--d:13s;--dl:-3s;--drift:30px;--rot:160deg;">
-    <img class="flower-fall" src="Flores/flor-13.png" style="width:26px;left:15%;--d:10s;--dl:-7s;--drift:-25px;--rot:-140deg;">
-    <img class="flower-fall" src="Flores/flor-20.png" style="width:46px;left:24%;--d:16s;--dl:-1s;--drift:20px;--rot:200deg;">
-    <img class="flower-fall" src="Flores/flor-05.png" style="width:24px;left:34%;--d:9s;--dl:-5s;--drift:-18px;--rot:-120deg;">
-    <img class="flower-fall" src="Flores/flor-07.png" style="width:38px;left:44%;--d:14s;--dl:-9s;--drift:22px;--rot:150deg;">
-    <img class="flower-fall" src="Flores/flor-17.png" style="width:30px;left:53%;--d:11s;--dl:-2s;--drift:-28px;--rot:-180deg;">
-    <img class="flower-fall" src="Flores/flor-04.png" style="width:36px;left:62%;--d:15s;--dl:-10s;--drift:24px;--rot:170deg;">
-    <img class="flower-fall" src="Flores/flor-15.png" style="width:28px;left:71%;--d:12s;--dl:-4s;--drift:-20px;--rot:-160deg;">
-    <img class="flower-fall" src="Flores/flor-08.png" style="width:22px;left:80%;--d:10.5s;--dl:-8s;--drift:16px;--rot:140deg;">
-    <img class="flower-fall" src="Flores/flor-20.png" style="width:40px;left:89%;--d:17s;--dl:-6s;--drift:-22px;--rot:-190deg;">
-    <img class="flower-fall" src="Flores/flor-13.png" style="width:20px;left:95%;--d:9.5s;--dl:-2.5s;--drift:14px;--rot:130deg;">
   </div>
 
   <div class="hero-badge">
@@ -1099,41 +893,6 @@ a{text-decoration:none;color:inherit;}
   </div>
 </div>
 
-<!-- OFERTAS DEL MES -->
-<section id="ofertas" class="ofertas">
-  <div class="ofertas-inner">
-    <div class="ofertas-header reveal">
-      <p class="section-eyebrow">Primavera Sale</p>
-      <h2 class="section-title">Ofertas del mes</h2>
-      <p class="section-desc">Piletas y productos para el mantenimiento, con precio especial por tiempo limitado.</p>
-    </div>
-    <div class="ofertas-carousel">
-      <div class="ofertas-track" id="ofertasTrack">
-        <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20la%20Porto%20700%20(25%25%20OFF)." class="oferta-card" target="_blank">
-          <img src="Ofertas/porto-700-oferta.jpg" alt="Porto 700 — 25% OFF">
-        </a>
-        <a href="https://wa.me/5493518786914?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20la%20Porto%20630%20(25%25%20OFF)." class="oferta-card" target="_blank">
-          <img src="Ofertas/porto-630-oferta.jpg" alt="Porto 630 — 25% OFF">
-        </a>
-        <a href="https://wa.me/5493513786233?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20el%20Kit%20de%20mantenimiento%20(%2420.000)." class="oferta-card" target="_blank">
-          <img src="Ofertas/kit-mantenimiento.jpg" alt="Kit de mantenimiento — $20.000">
-        </a>
-        <a href="https://wa.me/5493513786233?text=Hola!%20Vengo%20de%20la%20promo%20Primavera%20Sale%2C%20quisiera%20consultar%20por%20las%20Pastillas%20Triple%20Acci%C3%B3n%20(2x%20%2414.000)." class="oferta-card" target="_blank">
-          <img src="Ofertas/pastillas-triple-accion.jpg" alt="Pastillas Triple Acción — 2x $14.000">
-        </a>
-      </div>
-      <div class="ofertas-nav">
-        <button class="ofertas-nav-btn" onclick="document.getElementById('ofertasTrack').scrollBy({left:-320,behavior:'smooth'})" aria-label="Anterior">
-          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="ofertas-nav-btn" onclick="document.getElementById('ofertasTrack').scrollBy({left:320,behavior:'smooth'})" aria-label="Siguiente">
-          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- STATS -->
 <section class="stats">
   <div class="stats-bg"></div>
@@ -1170,7 +929,7 @@ a{text-decoration:none;color:inherit;}
 </section>
 
 <!-- NOSOTROS -->
-<section id="nosotros" class="about flowers-bg">
+<section id="nosotros" class="about">
   <div class="about-inner">
     <div class="about-text reveal-left">
       <p class="section-eyebrow">Quiénes somos</p>
@@ -1269,7 +1028,7 @@ a{text-decoration:none;color:inherit;}
 </section>
 
 <!-- MODELOS -->
-<section id="modelos" class="models flowers-bg">
+<section id="modelos" class="models">
   <div class="models-inner">
     <div class="models-header reveal">
       <p class="section-eyebrow">Nuestros modelos</p>
@@ -1320,9 +1079,8 @@ a{text-decoration:none;color:inherit;}
             <div class="model-slide" data-name="Porto 500">
               <img src="Piletas/Porto 500.png" alt="Porto 500"/>
             </div>
-            <div class="model-slide flowers-bg" data-name="Porto 630">
+            <div class="model-slide" data-name="Porto 630">
               <img src="Piletas/Porto 630.png" alt="Porto 630"/>
-              <span class="model-badge-sale-off"><span class="pct">25%</span><span class="off">OFF</span></span>
             </div>
             <div class="model-slide" data-name="Porto 750">
               <img src="Piletas/Porto 750.png" alt="Porto 750"/>
@@ -1437,10 +1195,9 @@ a{text-decoration:none;color:inherit;}
             <div class="model-slide active" data-name="Porto 501">
               <img src="Piletas/Porto 501.png" alt="Porto 501 Solarium"/>
             </div>
-            <div class="model-slide flowers-bg" data-name="Porto 700">
+            <div class="model-slide" data-name="Porto 700">
               <span class="model-badge-float">Más vendida</span>
               <img src="Piletas/porto 700 nueva.png" alt="Porto 700 Solarium"/>
-              <span class="model-badge-sale-off"><span class="pct">25%</span><span class="off">OFF</span></span>
             </div>
           </div>
           <button class="model-nav-btn next" onclick="navigateModel('solarium',1)" aria-label="Siguiente">
@@ -1690,7 +1447,7 @@ a{text-decoration:none;color:inherit;}
 </section>
 
 <!-- UBICACIÓN -->
-<section id="contacto" class="location flowers-bg">
+<section id="contacto" class="location">
   <div class="location-inner">
     <div class="location-info reveal-left">
       <p class="section-eyebrow">Dónde encontrarnos</p>
@@ -1872,21 +1629,6 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-// ── PROMO POPUP ──
-const promoOverlay = document.getElementById('promoOverlay');
-function closePromo(){
-  promoOverlay.classList.remove('open');
-  sessionStorage.setItem('portoPromoClosed','1');
-}
-if (promoOverlay && !sessionStorage.getItem('portoPromoClosed')) {
-  setTimeout(() => promoOverlay.classList.add('open'), 600);
-}
-if (promoOverlay) {
-  promoOverlay.addEventListener('click', (e) => {
-    if (e.target === promoOverlay) closePromo();
-  });
-}
-
 // Distribución automática entre los números de WhatsApp de ventas (piletas)
 // Reparto parejo entre los tres números (se sacó el de Carlos, se sumó la nueva vendedora)
 const waNumbers = ['5493518786914', '5493512170986', '5493513554260'];
@@ -1934,80 +1676,6 @@ function setPoolColor(color) {
     b.classList.toggle('active', b.dataset.color === color);
   });
 }
-</script>
-
-<script>
-(function(){
-  const flowerImgs = [
-    'Flores/flor-01.png','Flores/flor-04.png','Flores/flor-05.png','Flores/flor-07.png',
-    'Flores/flor-08.png','Flores/flor-13.png','Flores/flor-15.png','Flores/flor-17.png',
-    'Flores/flor-19.png','Flores/flor-20.png'
-  ];
-  function buildFlowerLayer(count, opts){
-    opts = opts || {};
-    const minSize = opts.minSize || 18, maxSize = opts.maxSize || 26;
-    const layer = document.createElement('div');
-    layer.className = 'flowers-fall-layer';
-    for (let i = 0; i < count; i++){
-      const img = document.createElement('img');
-      img.className = 'flower-fall';
-      img.src = flowerImgs[Math.floor(Math.random() * flowerImgs.length)];
-      const size = minSize + Math.random() * (maxSize - minSize);
-      const left = opts.corners
-        ? (Math.random() > 0.5 ? Math.random() * 16 : 84 + Math.random() * 16)
-        : 2 + Math.random() * 94;
-      const duration = 9 + Math.random() * 8;
-      const delay = -(Math.random() * duration);
-      const drift = Math.random() * 50 - 25;
-      const rot = (Math.random() > 0.5 ? 1 : -1) * (120 + Math.random() * 80);
-      img.style.width = size + 'px';
-      img.style.left = left + '%';
-      img.style.setProperty('--d', duration + 's');
-      img.style.setProperty('--dl', delay + 's');
-      img.style.setProperty('--drift', drift + 'px');
-      img.style.setProperty('--rot', rot + 'deg');
-      layer.appendChild(img);
-    }
-    return layer;
-  }
-  document.querySelectorAll('.flowers-bg').forEach(section => {
-    if (section.classList.contains('model-slide')){
-      section.appendChild(buildFlowerLayer(4, {minSize:14, maxSize:22, corners:true}));
-    } else {
-      section.insertBefore(buildFlowerLayer(9), section.firstChild);
-    }
-  });
-
-  function burstFlowers(x, y){
-    const count = 10;
-    for (let i = 0; i < count; i++){
-      const img = document.createElement('img');
-      img.className = 'flower-burst';
-      img.src = flowerImgs[Math.floor(Math.random() * flowerImgs.length)];
-      const angle = Math.random() * Math.PI * 2;
-      const distance = 60 + Math.random() * 90;
-      const bx = Math.cos(angle) * distance;
-      const by = Math.sin(angle) * distance;
-      const size = 16 + Math.random() * 20;
-      const rot = (Math.random() > 0.5 ? 1 : -1) * (180 + Math.random() * 180);
-      img.style.left = x + 'px';
-      img.style.top = y + 'px';
-      img.style.width = size + 'px';
-      img.style.setProperty('--bx', bx + 'px');
-      img.style.setProperty('--by', by + 'px');
-      img.style.setProperty('--br', rot + 'deg');
-      document.body.appendChild(img);
-      img.addEventListener('animationend', () => img.remove());
-    }
-  }
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href^="https://wa.me/"]');
-    if (!link) return;
-    e.preventDefault();
-    burstFlowers(e.clientX, e.clientY);
-    setTimeout(() => window.open(link.href, '_blank'), 450);
-  });
-})();
 </script>
 
 </body>
